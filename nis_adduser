@@ -1,0 +1,78 @@
+#!/bin/ksh
+
+#
+# nis_adduser - add a NIS homedir on unxsun7
+#
+# assumption - /Unix1 and /Unix2 are mounted. Homedirs
+# live under these NFS mount points.
+#
+# I usually just run this from my NIS home directory on
+# unxsun7
+#
+# Scott Gillespie x85524
+#
+
+USERNAME=$1
+FIRSTNM=$2
+LASTNM=$3
+GROUP=$4
+HOMEDIR=$5
+SAMPLEUSER=$6
+
+# check NFS dirs are mounted
+if [ `df /Unix1 | grep ':' >/dev/null 2>&1; echo $?` -eq 1 ]; then
+   echo "/Unix1 nfs dir not mounted. Exiting."
+   exit
+fi
+
+if [ `df /Unix2 | grep ':' >/dev/null 2>&1; echo $?` -eq 1 ]; then
+   echo "/Unix2 nfs dir not mounted. Exiting."
+   exit
+fi
+
+#...LASTINITIAL=`echo $LASTNM | cut -c1`
+
+if [ $# != 6 ]; then
+   echo "Usage: $0 <username> <firstname> <lastname> <group> <homedir> <sample user>"
+   echo "Example: $0 scottg Scott Gillespie lab /Unix1/Lab/scottg berryj"
+   exit 1
+fi
+
+PASSWDFILE=/var/yp/etc/passwd
+SHADOWFILE=/var/yp/etc/shadow
+GID=`grep $SAMPLEUSER $PASSWDFILE | awk -F: '{print $4}'`
+# get the highest UID in the passwd file for SAMPLEUSER
+HIGHUID=`grep $GID $PASSWDFILE | awk -F: '{print $3}' | sort | tail -1`
+# and add one to it
+UID=`expr $HIGHUID + 1`
+
+CURNTUSER=`grep $USERNAME $PASSWDFILE >/dev/null 2>&1; echo $?`
+if [ $CURNTUSER -eq 0 ]; then
+   echo "That user already exists in $PASSWDFILE."
+   echo "Exiting."
+   exit 1
+fi
+
+cp $PASSWDFILE $PASSWDFILE-
+cp $SHADOWFILE $SHADOWFILE-
+
+echo "$USERNAME:x:$UID:$GID:$FIRSTNM $LASTNM:$HOMEDIR:/bin/csh" >> $PASSWDFILE
+echo "$USERNAME:::::::" >> $SHADOWFILE
+
+echo "Changing directory to /var/yp/etc..."
+cd /var/yp
+echo "Running /usr/ccs/bin/make..."
+/usr/ccs/bin/make
+
+echo "!!! ADMIN: - use username for password below !!!"
+# interactive portion
+passwd $USERNAME
+
+mkdir $HOMEDIR
+chown $USERNAME:$GROUP $HOMEDIR
+chown $USERNAME:$GROUP $HOMEDIR
+
+for i in `ls /etc/skel | awk -F"." '{print $2}'`; do
+   cp /etc/skel/local.$i $HOMEDIR/.$i
+   chown $USERNAME:$GROUP $HOMEDIR/.$i
+done
