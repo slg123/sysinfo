@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# get gcc and gmake versions on build systems
+# get software versions on build systems
 
 import os
 
