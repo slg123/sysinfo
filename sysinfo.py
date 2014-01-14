@@ -36,7 +36,7 @@ def get_usrlocal_gmake():
         os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gmake --version | grep Make | awk \'{ print $3 }\'' )
 
 
-def main():
+if __name__=='__main__':
     build_systems_listing()
     print "_________________________________gcc   versions_________________________________"
     print "________________________________________________________________________________"
@@ -46,9 +46,6 @@ def main():
     print "________________________________________________________________________________"
     get_gmake_version()
     get_usrlocal_gmake()
-
-main()
-
 
     
 
