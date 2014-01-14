@@ -23,41 +23,16 @@ def get_sw_version( sw_name ):
         #os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version | grep '+sw_name+'| awk \'{ print $3 }\'' )
         os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version' )
 
-software = [ "gcc", "/usr/local/bin/gcc", "gmake", "/usr/local/bin/gmake" ]
-for pkg in software:
-    get_sw_version( pkg )
-    
-#def get_gcc_version():
-#    for host in build_systems:
-#        print ":::"+host+":::"
-#        os.system( '/usr/bin/ssh '+host+' gcc --version | grep gcc | awk \'{ print $3 }\'' )
-#
-#def get_usrlocal_gcc():
-#    for host in build_systems:
-#        print ":::"+host+":::"
-#        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gcc --version | grep gcc | awk \'{ print $3 }\'' )
-#
-#def get_gmake_version():
-#    for host in build_systems:
-#        print ":::"+host+":::"
-#        os.system( '/usr/bin/ssh '+host+' gmake --version | grep Make | awk \'{ print $3 }\'' )
-#
-#def get_usrlocal_gmake():
-#    for host in build_systems:
-#        print ":::"+host+":::"
-#        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gmake --version | grep Make | awk \'{ print $3 }\'' )
-
-
-#if __name__=='__main__':
-#    build_systems_listing()
-#    print "_________________________________gcc   versions_________________________________"
-#    print "________________________________________________________________________________"
-#    get_gcc_version()
-#    get_usrlocal_gcc()
-#    print "_________________________________gmake versions_________________________________"
-#    print "________________________________________________________________________________"
-#    get_gmake_version()
-#    get_usrlocal_gmake()
+if __name__=='__main__':
+    build_systems_listing()
+    software = [ "gcc", "/usr/local/bin/gcc", "gmake", "/usr/local/bin/gmake" ]
+    for pkg in software:
+        if pkg == "gcc" or pkg == "/usr/local/bin/gcc":
+            print "+++ gcc version +++"
+            get_sw_version( pkg )
+        if pkg == "gmake" or pkg == "/usr/local/bin/gmake":
+            print "+++ gmake version +++"
+            get_sw_version( pkg )
 
     
 
