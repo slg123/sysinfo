@@ -23,7 +23,10 @@ def get_sw_version( sw_name ):
         #os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version | grep '+sw_name+'| awk \'{ print $3 }\'' )
         os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version' )
 
-software = [ "gcc", "/usr/local/bin/gcc", "gmake", "/usr/local/bin/gmake" ]
-for pkg in software:
-    get_sw_version( pkg )
+software = [ "gcc", "/usr/local/bin/gcc", "gmake", "/usr/local/bin/gmake", 
+             "lex", "/usr/local/bin/lex", "flex", "/usr/local/bin/flex",
+             "yacc", "/usr/local/bin/yacc", "bison", "/usr/local/bin/bison" ]
+
+for sw_name in software:
+    get_sw_version( sw_name )
 
