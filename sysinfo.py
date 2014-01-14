@@ -15,37 +15,49 @@ def build_systems_listing():
                 if cols[0] != "isuse1":     # exclude isuse1 for now 
                     build_systems.append( cols[0] ) 
 
-def get_gcc_version():
+build_systems_listing()
+
+def get_sw_version( sw_name ):
     for host in build_systems:
-        print ":::"+host+":::"
-        os.system( '/usr/bin/ssh '+host+' gcc --version | grep gcc | awk \'{ print $3 }\'' )
+        print ":::"+host+":::"+sw_name+":::"
+        #os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version | grep '+sw_name+'| awk \'{ print $3 }\'' )
+        os.system( '/usr/bin/ssh '+host+' '+sw_name+' --version' )
 
-def get_usrlocal_gcc():
-    for host in build_systems:
-        print ":::"+host+":::"
-        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gcc --version | grep gcc | awk \'{ print $3 }\'' )
+software = [ "gcc", "/usr/local/bin/gcc", "gmake", "/usr/local/bin/gmake" ]
+for pkg in software:
+    get_sw_version( pkg )
+    
+#def get_gcc_version():
+#    for host in build_systems:
+#        print ":::"+host+":::"
+#        os.system( '/usr/bin/ssh '+host+' gcc --version | grep gcc | awk \'{ print $3 }\'' )
+#
+#def get_usrlocal_gcc():
+#    for host in build_systems:
+#        print ":::"+host+":::"
+#        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gcc --version | grep gcc | awk \'{ print $3 }\'' )
+#
+#def get_gmake_version():
+#    for host in build_systems:
+#        print ":::"+host+":::"
+#        os.system( '/usr/bin/ssh '+host+' gmake --version | grep Make | awk \'{ print $3 }\'' )
+#
+#def get_usrlocal_gmake():
+#    for host in build_systems:
+#        print ":::"+host+":::"
+#        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gmake --version | grep Make | awk \'{ print $3 }\'' )
 
-def get_gmake_version():
-    for host in build_systems:
-        print ":::"+host+":::"
-        os.system( '/usr/bin/ssh '+host+' gmake --version | grep Make | awk \'{ print $3 }\'' )
 
-def get_usrlocal_gmake():
-    for host in build_systems:
-        print ":::"+host+":::"
-        os.system( '/usr/bin/ssh '+host+' /usr/local/bin/gmake --version | grep Make | awk \'{ print $3 }\'' )
-
-
-if __name__=='__main__':
-    build_systems_listing()
-    print "_________________________________gcc   versions_________________________________"
-    print "________________________________________________________________________________"
-    get_gcc_version()
-    get_usrlocal_gcc()
-    print "_________________________________gmake versions_________________________________"
-    print "________________________________________________________________________________"
-    get_gmake_version()
-    get_usrlocal_gmake()
+#if __name__=='__main__':
+#    build_systems_listing()
+#    print "_________________________________gcc   versions_________________________________"
+#    print "________________________________________________________________________________"
+#    get_gcc_version()
+#    get_usrlocal_gcc()
+#    print "_________________________________gmake versions_________________________________"
+#    print "________________________________________________________________________________"
+#    get_gmake_version()
+#    get_usrlocal_gmake()
 
     
 
