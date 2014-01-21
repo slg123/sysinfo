@@ -1,0 +1,29 @@
+#!/bin/sh
+
+HOSTNAME=`hostname`
+CMDPATH=/Unix2/Unix/scottg/src/c
+
+if [ "$HOSTNAME" = "suz300" ]; then
+    $CMDPATH/fssiz_suz300
+fi
+if [ "$HOSTNAME" = "red300" ]; then
+    $CMDPATH/fssiz_red300
+fi
+if [ "$HOSTNAME" = "sunbld8a" ]; then
+    $CMDPATH/fssiz_sunbld8a
+fi
+if [ "$HOSTNAME" = "unxsun10x86" ]; then
+    $CMDPATH/fssiz_unxsun10x86
+fi
+if [ "$HOSTNAME" = "aix500" ]; then
+    $CMDPATH/fssiz_aix500
+fi
+if [ "$HOSTNAME" = "hpx502" ]; then
+    $CMDPATH/fssiz_hpx502
+fi
+if [ "$HOSTNAME" = "unxhpi64" ]; then
+    $CMDPATH/fssiz_unxhpi64
+fi
+if [ "$HOSTNAME" = "isuse1" ]; then
+    $CMDPATH/fssiz_isuse1
+fi
