@@ -12,8 +12,8 @@ def build_systems_listing():
         for line in inf:
             if not line.strip().startswith("#"):
                 cols=line.split(';')        # SYSTEMS file is semicolon delimited
-                if cols[0] != "isuse1":     # exclude isuse1 for now 
-                    build_systems.append( cols[0] ) 
+                #if cols[0] != "isuse1":     # exclude isuse1 for now 
+                build_systems.append( cols[0] ) 
 
 build_systems_listing()
 
