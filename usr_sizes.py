@@ -20,3 +20,5 @@ def get_usr_size():
 if __name__=='__main__':
     build_systems_listing()
     get_usr_size()
+    with open( 'usr_sizes_total.txt', 'w' ) as outfile:
+        subprocess.call(['/Unix2/Unix/scottg/scripts/total.sh'], stdout=outfile)
