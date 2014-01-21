@@ -1,28 +1,8 @@
-suz300
-Filesystem           1K-blocks      Used Available Use% Mounted on
-/dev/sda2              7349504   3936208   3413296  54% /
-red300
-Filesystem           1k-blocks      Used Available Use% Mounted on
-/dev/sda3             33536668   4964288  26868812  16% /
-sunbld8a
-Filesystem            kbytes    used   avail capacity  Mounted on
-/dev/dsk/c0t0d0s0    8255301 3272621 4900127    41%    /
-unxsun10x86
-Filesystem            kbytes    used   avail capacity  Mounted on
-/dev/dsk/c1t0d0s0    14421626 6544456 7732954    46%    /
-aix500
-Filesystem    1024-blocks      Free %Used    Iused %Iused Mounted on
-/dev/hd2          7700480   1450812   82%   105035     6% /usr
-hpx502
-/usr                   (/dev/vg00/lvol7       ) :  2920933 total allocated Kb
-                                                    458982 free allocated Kb
-                                                   2461951 used allocated Kb
-                                                        84 % allocation used
-unxhpi64
-/usr                   (/dev/vg00/lvol7       ) :  4472832 total allocated Kb
-                                                    178920 free allocated Kb
-                                                   4293912 used allocated Kb
-                                                        95 % allocation used
-isuse1
-Filesystem           1k-blocks      Used Available Use% Mounted on
-/dev/hda3              4800556   4531652     21104 100% /
+suz300 /usr: 7525892096
+red300 /usr: 34341548032
+sunbld8a /usr: 67627425792
+unxsun10x86 /usr: 118141960192
+aix500 /usr: 7885291520
+hpx502 /usr: 24092082176
+unxhpi64 /usr: 4580179968
+isuse1 /usr: 4915769344

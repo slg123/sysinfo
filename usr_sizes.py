@@ -15,10 +15,7 @@ import subprocess
 def get_usr_size():
     with open( 'usr_sizes.txt', 'w' ) as outfile:
         for host in build_systems:
-            #print ":::"+host+":::"
-            #os.system( '/usr/bin/ssh '+host+' df -k /usr' )
-            subprocess.call(['/usr/bin/ssh', host, 'hostname'], stdout=outfile)
-            subprocess.call(['/usr/bin/ssh', host, 'df -k /usr'], stdout=outfile)
+            subprocess.call(['/usr/bin/ssh', host, '/Unix2/Unix/scottg/src/c/fssiz'], stdout=outfile)
 
 if __name__=='__main__':
     build_systems_listing()
