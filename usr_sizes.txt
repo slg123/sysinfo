@@ -1,8 +1,8 @@
-suz300 /usr: 7525892096
-red300 /usr: 34341548032
-sunbld8a /usr: 67627425792
-unxsun10x86 /usr: 118141960192
-aix500 /usr: 7885291520
-hpx502 /usr: 24092082176
-unxhpi64 /usr: 4580179968
-isuse1 /usr: 4915769344
+suz300 /usr: 7 GB
+red300 /usr: 32 GB
+sunbld8a /usr: 63 GB
+unxsun10x86 /usr: 110 GB
+aix500 /usr: 7 GB
+hpx502 /usr: 22 GB
+unxhpi64 /usr: 4 GB
+isuse1 /usr: 5 GB

@@ -15,8 +15,8 @@ int main()
         fprintf( stderr, "statvfs() error"); 
     }
 
-    double size_bytes  = (double)buf.f_blocks * buf.f_bsize; 
-    printf("%s /usr: %.0f\n", hostname, size_bytes); 
+    double size_gbytes = ( (double)buf.f_blocks * buf.f_bsize ) / 1024 / 1024 / 1024;
+    printf("%s /usr: %.0f GB\n", hostname, size_gbytes ); 
     return 0;
 }
 
