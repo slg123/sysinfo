@@ -1,6 +1,9 @@
 #!/usr/bin/perl
 
 # the OracleUnix alertlog KS does not use fseek. wtf? why not?
+# this is a kludge. This handler should be refactored to use fseek()
+# instead of "wc -l" and "tail -f" - that's sysadmin code. 
+ 
 use strict;
 use warnings;
 
