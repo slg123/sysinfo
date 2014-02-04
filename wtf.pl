@@ -17,7 +17,7 @@ sub get_previous_linecounts {
     my @logfiles = qw( /var/log/messages-20140126 /var/log/messages-20140202 /var/log/messages ); 
     my @linecounts;
     for my $logfile ( @logfiles ) {
-        my $nl = ( split / /, `wc -l $logfile` )[0]; 
+        my $nl = ( split / /, `wc -l $logfile` )[0]; # number of lines, first field of wc -l output
         push @linecounts, $nl;
         print "$nl lines in $logfile\n"; 
     }
@@ -35,7 +35,7 @@ foreach my $value ( keys %logfile_linecounts ) {
 sub open_new_entries {
     my $fn = shift;
     my $new_number_of_lines = 0;
-    my $nl = ( split / /, `wc -l $fn` )[0]; 
+    my $nl = ( split / /, `wc -l $fn` )[0];         
     print "DEBUG: current number of lines in $fn: $nl\n"; 
     if ( $current_number_of_lines < $last_number_of_lines ) {
         $new_number_of_lines = $last_number_of_lines; 
