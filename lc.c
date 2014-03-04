@@ -41,6 +41,10 @@ int main()
         }
     }
     printf( "smallest pile weight: pile # %d\n", smallest_weight ); 
+    printf( "take that pile, put two coins on the balance beam. if they equal, then the\n" );
+    printf( "light coin is the coin that's not on the scale, otherwise it's the higher coin\n" );
+    printf( "on the balance beam.\n" ); 
+
     return 0;
 }
 
