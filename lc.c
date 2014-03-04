@@ -23,8 +23,10 @@ int main()
     int weights[3] = { pile1_weight, pile2_weight, pile3_weight };
 
     int i;
+    int j = 0;
     for ( i = 0; i <= 6; i += 3 ) {
-        printf( "%d\n", pile_weight( 0, i )); 
+        j++;
+        printf( "pile %d weight: %d\n", j, pile_weight( 0, i )); 
     }
 
     // get the stack of coins that has the smallest weight
