@@ -51,7 +51,7 @@ float calculate_average( float *arr, int size )
     return average;
 }
 
-float random_n_to_m( float i, float j ) 
+float random_i_to_j( float i, float j ) 
 {
     return i + ( rand() / ( RAND_MAX / ( j - i )));
 }
