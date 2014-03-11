@@ -8,7 +8,6 @@
 float random_samples[DATA_SIZE] = {};
 
 void create_random_samples(); 
-//void show_values();
 float calculate_average( float *arr, int size );
 float random_n_to_m( float i, float j ); 
 
@@ -39,14 +38,6 @@ void create_random_samples( int num )
         random_samples[i] = random_n_to_m( 2.00, 5.00 );  // random samples between 2.00 and 5.00
     }
 }
-
-//void show_values()
-//{
-//    int i;
-//    for ( i = 0; i < DATA_SIZE; i++ ) {
-//        printf( "%.2f\n", random_samples[i] );
-//    }
-//}
 
 float calculate_average( float *arr, int size ) 
 {
