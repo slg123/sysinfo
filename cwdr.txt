@@ -1,37 +1,37 @@
-linuxamd64_12c_database_1of2.zip                             1361028723
-xlc.rte.111.aix53TL7-71.sep2010.ptf.tar.Z                      71745064
-libstdcplusplus-devel-4.2.0-3.aix5.3.ppc.rpm                   51878416
-coreutils-8.0.tar.gz                                           10236285
-snort-2.9.6.0.tar.gz                                            5189146
-gcc-4.2.0-3.aix5.3.ppc.rpm                                      4582111
-gcc-cplusplus-4.2.0-3.aix5.3.ppc.rpm                            3304851
-libstdcplusplus-4.2.0-3.aix6.1.ppc.rpm                          2889913
-vim-common-6.3-1.aix5.1.ppc.rpm                                 2655641
-nagios-plugins-1.5.tar.gz                                       2428258
-nagios-4.0.2.tar.gz                                             1696847
-bash-4.2-1.aix6.1.ppc.rpm                                       1695702
-psad-2.2.2.tar.gz                                               1521948
-vim-minimal-6.3-1.aix5.1.ppc.rpm                                 277110
-vios.jpg                                                         232379
-weblogic.jpg                                                     210065
-community-rules.tar.gz                                           209163
-libgcc-4.2.0-3.aix5.3.ppc.rpm                                    186657
-screenshot.jpg                                                    78501
-scripts                                                           60416
-nagios-4.0.2                                                       3072
-coreutils-8.0                                                      3072
-nagios-plugins-1.5                                                 3072
-notes                                                              1024
-AIX_software                                                       1024
-Oracle                                                             1024
-perforce                                                           1024
-coreutils                                                          1024
-CI                                                                 1024
-src                                                                1024
-amadmin                                                             739
-myvms                                                               177
-SU                                                                   80
-WebLogicServer                                                       80
-UNIX_OSTOOLS_BACKUP                                                  80
-projects                                                             80
-cwdr.txt                                                              0
+linuxamd64_12c_database_1of2.zip                        1297.98 MB
+xlc.rte.111.aix53TL7-71.sep2010.ptf.tar.Z               68.42 MB
+libstdcplusplus-devel-4.2.0-3.aix5.3.ppc.rpm            49.48 MB
+coreutils-8.0.tar.gz                                    9.76 MB
+snort-2.9.6.0.tar.gz                                    4.95 MB
+gcc-4.2.0-3.aix5.3.ppc.rpm                              4.37 MB
+gcc-cplusplus-4.2.0-3.aix5.3.ppc.rpm                    3.15 MB
+libstdcplusplus-4.2.0-3.aix6.1.ppc.rpm                  2.76 MB
+vim-common-6.3-1.aix5.1.ppc.rpm                         2.53 MB
+nagios-plugins-1.5.tar.gz                               2.32 MB
+nagios-4.0.2.tar.gz                                     1.62 MB
+bash-4.2-1.aix6.1.ppc.rpm                               1.62 MB
+psad-2.2.2.tar.gz                                       1.45 MB
+vim-minimal-6.3-1.aix5.1.ppc.rpm                        0.26 MB
+vios.jpg                                                0.22 MB
+weblogic.jpg                                            0.20 MB
+community-rules.tar.gz                                  0.20 MB
+libgcc-4.2.0-3.aix5.3.ppc.rpm                           0.18 MB
+screenshot.jpg                                          0.07 MB
+scripts                                                 0.06 MB
+nagios-plugins-1.5                                      0.00 MB
+nagios-4.0.2                                            0.00 MB
+coreutils-8.0                                           0.00 MB
+cwdr.txt                                                0.00 MB
+AIX_software                                            0.00 MB
+CI                                                      0.00 MB
+perforce                                                0.00 MB
+src                                                     0.00 MB
+coreutils                                               0.00 MB
+notes                                                   0.00 MB
+Oracle                                                  0.00 MB
+amadmin                                                 0.00 MB
+myvms                                                   0.00 MB
+SU                                                      0.00 MB
+WebLogicServer                                          0.00 MB
+projects                                                0.00 MB
+UNIX_OSTOOLS_BACKUP                                     0.00 MB
