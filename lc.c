@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+/* lc - weigh coin stacks to find the lightest pile */
+
 #define NUMCOINS 9
 #define PILESIZE 3
 
