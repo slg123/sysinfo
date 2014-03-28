@@ -23,29 +23,20 @@ int main()
     int weights[3] = { pile1_weight, pile2_weight, pile3_weight };
 
     int i;
-    int j = 0;
+    int counter = 0;
     for ( i = 0; i <= 6; i += 3 ) {
-        j++;
-        printf( "pile %d weight: %d\n", j, pile_weight( 0, i )); 
+        printf( "weight of pile: %d -> %d\n", counter, pile_weight( 0, i )); 
+        counter++;
     }
 
     // get the stack of coins that has the smallest weight
     int smallest = 10000; 
-    int pile_counter = 0;
-    int smallest_weight = 0;
     for ( i = 0; i < 3; i++ ) {
-        pile_counter++;
         if ( weights[i] < smallest ) {
             smallest = weights[i];
-            smallest_weight = pile_counter;
         }
     }
-    printf( "smallest pile weight: pile # %d\n", smallest_weight ); 
-    printf( "take that pile, put two coins on the balance beam. if they equal, then the\n" );
-    printf( "light coin is the coin that's not on the scale, otherwise it's the higher coin\n" );
-    printf( "on the balance beam.\n" ); 
-
-    return 0;
+    printf( "weight of smallest pile: %d\n", smallest ); 
 }
 
 int pile_weight( int i, int j ) 
