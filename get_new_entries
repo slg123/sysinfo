@@ -1,0 +1,55 @@
+#!/usr/bin/perl 
+
+#  get new entries in a log file
+
+use strict;
+use warnings;
+
+my %current_file_size = ();
+our $count = 0;
+our $sleep = 60;
+
+sub get_new_entries {
+    my $fn = shift @_;
+    my $fh;
+    my $old_file_size = -1;
+
+    if ( defined $current_file_size{"$fn"} ) {
+        $old_file_size = $current_file_size{"$fn"};
+    }
+
+    my $new_file_size = -s $fn;
+    my $file_size_difference = 0; 
+
+    if ( !open ($fh, "<", $fn )) {
+        close $fh;
+        my $error_msg = "Failed to open alert log.";
+        return -1;
+    }
+
+    if ( $new_file_size >= $old_file_size && $old_file_size != -1 ) {
+        $file_size_difference = $new_file_size - $old_file_size;
+        #
+        # SEEK_SET = 0 -> specifies that the offset is from the beginning of the file.
+        # SEEK_CUR = 1 -> specifies that the offset is from the current file position.
+        # SEEK_END = 2 -> specifies that the offset is counted from the end of file, EOF.
+        #
+        seek( $fh, -$file_size_difference, 2 );  # file offset count from EOF. 
+    }
+    $current_file_size{"$fn"} = $new_file_size;
+    return $fh;
+}
+
+my $file = "/var/log/messages";
+
+# test driver for get_new_entries
+for ( my $i = 0; $i < 100; $i++ ) {
+    system( "/usr/bin/clear" ); 
+    my $alogfh = &get_new_entries( $file );
+    while ( my $line = <$alogfh> ) {
+        print $line, if $line =~ /ORA/ && $count gt 1;
+    }
+    sleep( $sleep ); 
+    $count++;
+}
+
