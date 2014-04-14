@@ -1,5 +1,5 @@
 user "root";
-password "dev123";
+password "";
 pass_auth;
 
 group all_servers   => "aix7lp2.houqe.lab", "om.houqe.lab", "houdvam302.nqeng.lab", "houdvam303.nqeng.lab", 
