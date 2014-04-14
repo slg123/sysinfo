@@ -17,7 +17,6 @@ sub get_linux_vmm_counters {
     }
     close $fh;
 
-
     while ( my ( $counter, $value ) = each %linux_vmm_counters ) {
         for ( @wanted_vmm_counters ) {
             if ( $counter =~ $_ ) {
