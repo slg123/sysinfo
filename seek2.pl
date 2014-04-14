@@ -5,8 +5,7 @@ use warnings;
 
 use Fcntl qw(:seek);
 
-my $running = 1;
-while ( $running ) {
+for ( my $i = 0; $i < 1000; $i++ ) {
     system( '/usr/bin/clear' );  
     get_file_positions();
     sleep 10;
