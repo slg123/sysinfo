@@ -9,6 +9,7 @@ chomp( our $date = `date '+%Y-%m-%d %H:%M:%S'` );
 our $out = "/root/perl/linux_counters.csv";
 
 sub get_linux_vmm_counters {
+
     my $file = "/proc/meminfo";
     my %counter_values = ();
 
@@ -31,9 +32,11 @@ sub get_linux_vmm_counters {
         }
     }
     close $ofh;
+
 }
 
 sub get_linux_cpu_counters {
+
     my $file = "/proc/stat";
     open my $fh, "<", $file;
     open my $ofh, ">>", $out;
@@ -46,9 +49,25 @@ sub get_linux_cpu_counters {
     }
     close $fh;
     close $ofh;
+
 }
 
 sub get_aix_vmm_counters {
+
+    my $cmd = "/usr/bin/svmon -G";
+    open my $fh, "-|", $cmd;
+    while ( <$fh> ) {
+        if ( /pg space/ ) {
+            my ( $junk1, $junk2, $page_size, $paging_inuse ) = split ' ', $_;
+            print "$date,$page_size,$paging_inuse,";
+        }
+        if ( /memory/ ) {
+            my ( $junk, $memory_size, $memory_inuse ) = split ' ', $_;
+            print "$memory_size,$memory_inuse\n"; 
+        }
+    }
+    close $fh;
+
 }
 
 sub get_aix_cpu_counters {
