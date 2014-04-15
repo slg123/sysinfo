@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use autodie;
 
-my $os = `uname`;
+chomp( my $os = `uname` );
 chomp( our $date = `date '+%Y-%m-%d %H:%M:%S'` );
 our $out = "/root/perl/linux_counters.csv";
 
@@ -26,8 +26,8 @@ sub get_linux_vmm_counters {
     while ( my ( $name, $value ) = each %counter_values ) {
         for ( @wanted_values ) {
             if ( $name =~ $_ ) {
-                print $ofh "$date,$name,$value\n";
-                printf "%s,%s,%s\n", $date, $name, $value;
+                print $ofh "$os,$date,$name,$value\n";
+                printf "%s,%s,%s,%s\n", $os,$date, $name, $value;
             }
         }
     }
@@ -43,8 +43,8 @@ sub get_linux_cpu_counters {
     while ( <$fh> ) {
         if ( /cpu/ ) {
             my ( $cpu, $f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8, $f9 ) = split ' ', $_;
-            print "$date,$cpu,$f1,$f2,$f3\n"; # example for now
-            print $ofh "$date,$cpu,$f1,$f2,$f3\n";
+            print "$os,$date,$cpu,$f1,$f2,$f3\n"; # example for now
+            print $ofh "$os,$date,$cpu,$f1,$f2,$f3\n";
         }
     }
     close $fh;
@@ -59,7 +59,7 @@ sub get_aix_vmm_counters {
     while ( <$fh> ) {
         if ( /pg space/ ) {
             my ( $junk1, $junk2, $page_size, $paging_inuse ) = split ' ', $_;
-            print "$date,$page_size,$paging_inuse,";
+            print "$os,$date,$page_size,$paging_inuse,";
         }
         if ( /memory/ ) {
             my ( $junk, $memory_size, $memory_inuse ) = split ' ', $_;
@@ -71,6 +71,12 @@ sub get_aix_vmm_counters {
 }
 
 sub get_aix_cpu_counters {
+    my $cmd = "/usr/bin/mpstat";
+    open my $fh, "-|", $cmd;
+    while ( <$fh> ) {
+        print;
+    }
+    close $fh;
 }
 
 sub get_solaris_cpu_counters {
@@ -87,7 +93,7 @@ sub main {
         }
         if ( $os =~ "AIX" ) {
             get_aix_vmm_counters();
-            get_aix_cpu_counters();
+            #get_aix_cpu_counters();
         }
         if ( $os =~ "Solaris" ) {
             get_solaris_cpu_counters();
