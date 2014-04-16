@@ -23,7 +23,11 @@ close $fh;
 # do something with this later - fire an alert email or whatever. 
 #
 if ( $errpt_linecount > $threshhold ) {
-    print "system exceeded threshold of $threshhold errpt report identifiers...\n";
+    print "System exceeded threshold of $threshhold errpt report identifiers...\n";
+    print "There are currently $errpt_linecount alerts in your error log.\n";
+    print "There following are the unique alerts in your errpt error log.\n"; 
+    print "You will want to run errpt -a -j IDENTIFIER where IDENTIFIER is \n"; 
+    print "the alphanumeric identifier for the errpt message.\n"; 
 }
 
 while ( my ( $identifier, $description ) = each %uniq_errpt_messages ) {
