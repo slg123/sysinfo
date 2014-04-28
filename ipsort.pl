@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+# ipsort.pl - sort list of currently connected IP addresses.
+
 use strict;
 use warnings;
 use autodie;
