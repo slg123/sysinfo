@@ -28,7 +28,12 @@ my @sorted = map { substr($_, 4) }
              apply { chomp }
              <$ifh>;
 
-for my $ip ( @sorted ) {
-    print $ip, "\n";
-}
 close $ifh;
+my %seen = ();
+for my $ip ( @sorted ) {
+    $seen{ $ip }++;
+}
+my @unique_ips = keys %seen;
+for ( @unique_ips ) {
+    print $_, "\n"; 
+}
