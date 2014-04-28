@@ -31,11 +31,6 @@ my @sorted = map { substr($_, 4) }
              <$ifh>;
 
 close $ifh;
-my %seen = ();
 for my $ip ( @sorted ) {
-    $seen{ $ip }++;
-}
-my @unique_ips = keys %seen;
-for ( @unique_ips ) {
-    print $_, "\n"; 
+    print $ip, "\n"; 
 }
