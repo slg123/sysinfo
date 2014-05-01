@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-/* lc - weigh coin stacks to find the lightest pile */
+// given nine coins, one coin weighs less than the other eight.
+// how many weighings are required to find the light coin?
 
 #define NUMCOINS 9
 #define PILESIZE 3
@@ -30,6 +31,7 @@ int main()
         printf( "weight of pile: %d -> %d\n", counter, pile_weight( 0, i )); 
         counter++;
     }
+    printf( "total num weighings to find the light coin: %d\n", counter ); 
 
     // get the stack of coins that has the smallest weight
     int smallest = 10000; 
