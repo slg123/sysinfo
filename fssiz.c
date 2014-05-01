@@ -4,20 +4,22 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main()
-{
+#define NUM_FS 4
+
+int main() {
     char hostname[1024];
     hostname[1023] = '\0';
     gethostname( hostname, 1023 ); 
 
-    struct statvfs buf;
-    if ( statvfs("/usr", &buf) == -1 ) {
-        fprintf( stderr, "statvfs() error"); 
+    const char *filesystem[NUM_FS] = { "/usr", "/var", "/etc", "/tmp" }; 
+    int i;
+    for ( i = 0; i < NUM_FS; i++ ) {
+        struct statvfs buf;
+        if ( statvfs( filesystem[i], &buf ) == -1 ) {
+            fprintf( stderr, "statvfs error" ); 
+        }
+        double size_gbytes = ((double)buf.f_blocks * buf.f_bsize ) / 1024 / 1024 / 1024;
+        printf( "%0.2f\n", size_gbytes ); 
     }
-
-    double size_gbytes = ( (double)buf.f_blocks * buf.f_bsize ) / 1024 / 1024 / 1024;
-    printf("%s /usr: %.0f GB\n", hostname, size_gbytes ); 
-    return 0;
 }
-
 
