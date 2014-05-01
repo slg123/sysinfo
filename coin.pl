@@ -13,7 +13,7 @@ use POSIX;
 my $num_coin_flips = 1000000;
 my $heads_counter = 0;
 my $tails_counter = 0; 
-my $donnie_darko = 28064212;
+my $donnie_darko = rand( 28064212 );
 srand( $donnie_darko ); 
 
 for ( my $i = 0; $i < $num_coin_flips; $i++ ) {
