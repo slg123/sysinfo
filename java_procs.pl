@@ -23,7 +23,7 @@ sub get_jstats {
         while ( <$gc_fh> ) {
             my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
             if ( /\d+.\d/ ) {
-                print "$pid -> $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct";
+                print "$pid: $szero $sone $sou $ec $eu $oc $ou $pc $pu $ygc $ygct $fgc $fgct $gct\n";
             }
         }
     }
