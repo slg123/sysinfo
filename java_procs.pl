@@ -17,13 +17,12 @@ sub get_pids {
 sub get_jstats {
     my @java_pids = @_;
     foreach my $pid ( @java_pids ) {
+        chomp $pid;
         my $java_garbage_collection_cmd = "/usr/bin/jstat -gc $pid"; 
         open my $gc_fh, "-|", $java_garbage_collection_cmd;
         while ( <$gc_fh> ) {
-            if ( /\d+/ ) {
-                my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
-                print "$szero $sone $pc $pu $gct\n"; 
-            }
+            my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
+            print "$pid $szero $sone $pc $pu $gct\n"; 
         }
     }
 }
