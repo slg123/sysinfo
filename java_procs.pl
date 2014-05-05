@@ -49,7 +49,7 @@ sub get_jstats {
 sub main {
     get_pids(); 
     get_jstats( @pids );
-    printf "%.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f\n", 
+    printf "all processes: %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f %.1f\n", 
             $total_szero, $total_sone, $total_sou, $total_ec, $total_eu, $total_oc, $total_ou, 
             $total_pc, $total_pu, $total_ygc, $total_ygct, $total_fgc, $total_fgct, $total_gct; 
 }
