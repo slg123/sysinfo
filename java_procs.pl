@@ -22,7 +22,9 @@ sub get_jstats {
         open my $gc_fh, "-|", $java_garbage_collection_cmd;
         while ( <$gc_fh> ) {
             my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
-            print "$pid $szero $sone $pc $pu $gct\n"; 
+            if ( /\d+.\d/ ) {
+                print "$pid -> $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct";
+            }
         }
     }
 }
