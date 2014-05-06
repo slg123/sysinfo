@@ -1,5 +1,7 @@
 #!/usr/bin/perl
 
+# Get java process garbage collection statistics.
+
 use strict;
 use warnings;
 use autodie;
@@ -26,21 +28,24 @@ sub get_jstats {
         while ( <$gc_fh> ) {
             my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
             if ( /\d+.\d/ ) {
-                print "$pid: $szero $sone $sou $ec $eu $oc $ou $pc $pu $ygc $ygct $fgc $fgct $gct\n";
-                $total_szero += $szero;
-                $total_sone  += $sone; 
-                $total_sou   += $sou; 
-                $total_ec    += $ec; 
-                $total_eu    += $eu; 
-                $total_oc    += $oc; 
-                $total_ou    += $ou; 
-                $total_pc    += $pc; 
-                $total_pu    += $pu; 
-                $total_ygc   += $ygc; 
-                $total_ygct  += $ygct; 
-                $total_fgc   += $fgc; 
-                $total_fgct  += $fgct; 
-                $total_gct   += $gct;
+                #
+                # Please see the manual page or Oracle documentation to get a comprehensive
+                # overview of what these variables mean.
+                #
+                $total_szero += $szero;      # S0C  - Current survivor space 0 capacity (KB).
+                $total_sone  += $sone;       # S1C  - Current survivor space 1 capacity (KB).
+                $total_sou   += $sou;        # S0U  - Survivor space 0 utilization (KB).
+                $total_ec    += $ec;         # EC   - Current eden space capacity (KB). 
+                $total_eu    += $eu;         # EU   - Eden space utilization (KB).
+                $total_oc    += $oc;         # OC   - Current old space capacity (KB).
+                $total_ou    += $ou;         # OU   - Old space utilization (KB). 
+                $total_pc    += $pc;         # PC   - Current permanent space capacity (KB). 
+                $total_pu    += $pu;         # PU   - Permanent space utilization (KB). 
+                $total_ygc   += $ygc;        # YGC  - Number of young generation GC events. 
+                $total_ygct  += $ygct;       # YGCT - Young generation garbage collection time.
+                $total_fgc   += $fgc;        # FGC  - Number of full GC events.
+                $total_fgct  += $fgct;       # FGCT - Full garbage collection time.
+                $total_gct   += $gct;        # GCT  - Total garbage collection time. 
             }
         }
     }
