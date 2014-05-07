@@ -82,6 +82,20 @@ sub new {
     return bless $self, $package;
 }
 
+sub country {
+    my $self = shift;
+    return @_ ? ($self->{country} = shift) : $self->{country};
+}
+
+sub as_string {
+    my $self = shift;
+    my $string;
+    foreach ( qw( name street city zone country ) ) {
+        $string .= "$self->{$_}\n" if defined $self->{$_};
+    }
+    return $string;
+}
+
 my $Watson_Address = Address->new(
         name    => 'Dr. Watson',
         street  => '221b Baker St.',
@@ -103,15 +117,6 @@ my $Defender_Address = Address->new(
         city    => 'Tokyo',
         country => 'Japan',
 );
-
-sub as_string {
-    my $self = shift;
-    my $string;
-    foreach ( qw( name street city zone country ) ) {
-        $string .= "$self->{$_}\n" if defined $self->{$_};
-    }
-    return $string;
-}
 
 print $Watson_Address->as_string; print "\n"x4;
 print $Samwise_Address->as_string; print "\n"x4;
