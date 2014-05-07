@@ -90,6 +90,20 @@ my $Watson_Address = Address->new(
         country => 'England',
 );
 
+my $Samwise_Address = Address->new(
+        name    => 'Sam Gamgee',
+        street  => 'Bagshot Row',
+        city    => 'Hobbiton',
+        country => 'The Shire',
+);
+ 
+my $Defender_Address = Address->new(
+        name    => 'Defender',
+        street  => '2600 Atari Way',
+        city    => 'Tokyo',
+        country => 'Japan',
+);
+
 sub as_string {
     my $self = shift;
     my $string;
@@ -99,6 +113,8 @@ sub as_string {
     return $string;
 }
 
-print $Watson_Address->as_string;
+print $Watson_Address->as_string; print "\n"x4;
+print $Samwise_Address->as_string; print "\n"x4;
+print $Defender_Address->as_string; 
 
 
