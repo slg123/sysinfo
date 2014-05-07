@@ -87,6 +87,7 @@ my $Watson_Address = Address->new(
         zone    => 'NW1',
         country => 'England',
 );
+
 sub as_string {
     my $self = shift;
     my $string;
