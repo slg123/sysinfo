@@ -1,0 +1,37 @@
+
+   DevOps, in brief is about tighter OODA loops in an organization ( Observe, Orient, Decide and Act ). Borrowed
+from military operations, it's a way to get developers and sysadmins on the same page with respect to
+release management, provisioning and procurement ( and probably other stuff ). The sysadmins who
+practice DevOps are engaged in agile practices with their dev and systems teams, much like an agile
+sw dev team.
+
+   Essentially operations are tracked and managed using configuration management tools which
+guarantee consistent system images, and will enforce policies that keep the fidelity of those
+images ( promise-keeper theory, or something like that, I think is what it's called in CFEngine ).
+
+   I'm not sure what's used on the tracking side, but AppManager would be a great application to
+use to go out and mine that sort of information as well - "configuration management database" I think
+is the buzzword bingo term. AppManager either already does this or could do this - it has all the
+hooks already ( the Unix Agent, mainly ).
+
+   So take the PowerVM module for instance. Currently, we monitor things like memory, cpu pools, etc.
+A DevOps tool would also add a baseline system configuration utility which would query a systems
+/ DevOps / opscoder to provide that configuration which would be stored in the application and could
+be used each time a system is spun up from bare metal ( bare metal provisioning ). So on top of applications
+monitoring you would be able to drop a KS on say, a PowerVM CEC ( computer enclosure complex ), and
+a few minutes later NIM would have provisioned however many servers you requested - along with
+IP addresses based on whatever IP / naming scheme your using, with filesystems set the way you want
+them, memory set the way you want it, all the databases you want would be automatically provisioned
+via the tool, and your developers or customer would then be able to login and access their new system.
+The added bonus is that if a system is damaged or broken, the provisioning tool can re-provision
+the munged system.
+
+   This process tightens the observe-orient-decide-act loop in an organization, so there's less time
+spent going to committee with the sysadmin and DBA fighting with the IT developers, etc. It also
+means that uniform controls are used to provision systems, where the processes are the controls.
+Bundled with something like SM & SCM you have audit-survival tools as well as configuration management.
+And provisioning would be the next big thing - I think we're already looking into Puppet for one
+of our products. Integrating with that might not be as easy as internal development of our own system.
+
+   It's just Unix, and Unix is managed by a bunch of flat files. We already have Perl in the agent, so we're
+all set to do provisioning, I think. 
