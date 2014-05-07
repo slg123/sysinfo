@@ -1,5 +1,7 @@
 #!/usr/bin/perl 
 
+# farting with perl data structures.
+
 use strict;
 use warnings;
 
