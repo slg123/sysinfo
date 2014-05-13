@@ -2,7 +2,7 @@
 
 def convert_to_goat_latin( str ):
     out = []
-    words = string.split()
+    words = str.split()
     counter = 0
     for word in words:
         if word[0] == "aeiouy":
