@@ -5,7 +5,7 @@ def convert_to_goat_latin( str ):
     words = str.split()
     counter = 0
     for word in words:
-        if word[0] == "aeiouy":
+        if word[0].lower() == "aeiouy":
             out.append( ( word[1:] ) + ( "a" * counter ) )
         else:
             first_char = word[0:1]
