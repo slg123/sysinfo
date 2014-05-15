@@ -43,7 +43,13 @@ sub print_ip_hosts {
 }
 
 sub main {
+
+    # Build a list of all ips and hosts.
     build_ip_hosts_list();
+
+    # Print the list we just built.
     print_ip_hosts();
+
 }
+
 main()
