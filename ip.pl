@@ -14,7 +14,7 @@ sub build_ip_hosts_list {
                     my $system = `/usr/bin/host 10.22.$i.$j`;
                     if ( $system !~ /NXDOMAIN/ ) {
                         my @foo = split( " ", $system );
-                        my $hostname = $foo[4];
+                        my $hostname = substr( $foo[4], 0, -1 );
                         my $ip = "10.22.$i.$j";
                         $ips_hosts{ $ip } = $hostname; 
                     }
@@ -27,7 +27,7 @@ sub build_ip_hosts_list {
                 my $system = `/usr/bin/host 10.21.74.$i`;
                 if ( $system !~ /NXDOMAIN/ ) {
                     my @foo = split( " ", $system );
-                    my $hostname = $foo[4];
+                    my $hostname = substr( $foo[4], 0, -1 );
                     my $ip = "10.21.74.$i";
                     $ips_hosts{ $ip } = $hostname; 
                 }
@@ -38,7 +38,7 @@ sub build_ip_hosts_list {
 
 sub print_ip_hosts {
     while ( my ( $key, $value ) = each %ips_hosts ) {
-        print "$key    $value\n"; 
+        printf "%-25s    %-30s\n", $key, $value;
     }
 }
 
