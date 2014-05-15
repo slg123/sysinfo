@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+# get ips and hostnames on vlan 522 and vlan 174
+
 my @vlans = qw( 10.22.23/23 10.21.74/24 );
 
 for ( @vlans ) {
