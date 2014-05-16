@@ -1,9 +1,7 @@
 #!/usr/bin/perl
 
 sub get_aix_mem_percent_used {
-    my $percent_used = 0;
-    my $in_use = 0;
-    my $memory = 0;
+    my ( $percent_used, $in_use, $memory ) = 0;
     my $cmd = "svmon -G";
     open my $fh, "-|", $cmd;
     while ( <$fh> ) {
