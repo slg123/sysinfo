@@ -724,7 +724,7 @@ sub create_data {  # create datapoints for chart console
         }
 
     }
-    if ( $Do_data_fgc eq eq "y" ) { 
+    if ( $Do_data_fgc eq "y" ) { 
         our $msg = "fgc\n";
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
