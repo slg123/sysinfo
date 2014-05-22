@@ -47,8 +47,15 @@
 <DataSrc></DataSrc>
 
 <Parameter>
-  <Desc>Supported on:  [ALL LINUX AND UNIX PLATFORMS]
-Runs jstat command and gathers statistics. Please see the manual page for jstat(1) and Oracle documentation.</Desc>
+  <Desc><![CDATA[Supported on:  [ALL LINUX AND UNIX PLATFORMS]]]>
+Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
+
+  <Param name="$EventSettings">
+    <Desc>Event Settings</Desc>
+    <ReqInput>0</ReqInput>
+    <Folder>2</Folder>
+    <NoQuote>0</NoQuote>
+  </Param>
   <Param name="$GeneralSettings">
     <Desc>General Settings</Desc>
     <ReqInput>0</ReqInput>
