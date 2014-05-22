@@ -403,9 +403,9 @@ Runs jstat command and gathers statistics. Please see the manual page for jstat(
 <![CDATA[
 ### Please do not remove the following comments.
 ### Version string added by setQMLVersion.exe during build process.
-### Copyright (c) 2013 NetIQ Corporation. All rights reserved.
+### Copyright (c) 2014 NetIQ Corporation. All rights reserved.
 ### VERSION: 7.4.61.0
-### Copyright (c) 2006-2010 NetIQ Corp. All rights reserved.
+### Copyright (c) 2006-2014 NetIQ Corp. All rights reserved.
 ###
 ### Filename:  UNIX_JavaGarbageCollectorMonitor
 ### Branch:    main
