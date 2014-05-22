@@ -429,22 +429,22 @@ our $Sev_fail = 10;
 our $iterCount = 0;
 my $JobID = NetIQ::Nqext::GetJobID();
 my $RunTime = localtime();
-my $KsVersion = '$Revision: #11 $ $DateTime: 2010/10/20 17:48:53 $';
+my $KsVersion = '$Revision: #11 $ $DateTime: 2014/5/22 17:48:53 $';
 
 our $useNQACUtil = 1;
 eval 'require "NetIQ/NQACUtil.pm"';
 if($@) {
-  $useNQACUtil = 0;
-  printd ("useNQACUtil = 0\n");
+    $useNQACUtil = 0;
+    printd ("useNQACUtil = 0\n");
 }
 
 sub printd {
-  if ($debug eq 'y') {
-      open(DEBUG, ">>$ENV{NQMAGT_HOME}/log/UNIX_JavaGarbageCollectorMonitor${JobID}");
-      print "@_";
-      print DEBUG "@_";
-      close(DEBUG);  
-  }
+    if ($debug eq 'y') {
+        open(DEBUG, ">>$ENV{NQMAGT_HOME}/log/UNIX_JavaGarbageCollectorMonitor${JobID}");
+        print "@_";
+        print DEBUG "@_";
+        close(DEBUG);  
+    }
 }
 
 our ($sysname, $nodename, $release, $version, $machine);
