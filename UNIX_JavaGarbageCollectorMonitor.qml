@@ -614,9 +614,179 @@ sub check_threshholds {
     }
 }
 
+sub create_data {  # create datapoints for chart console
+    if ( $Do_data_szero eq "y" ) {
+        our $msg = "szero\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " szero ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+    }
+    if ( $Do_data_sone eq "y" ) {
+        our $msg = "sone\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " sone ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_sou eq "y" ) {
+        our $msg = "sou\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " sou ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_ec eq "y" ) {
+        our $msg = "ec\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " ec ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_eu eq "y" ) {
+        our $msg = "eu\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " eu ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_oc eq "y" ) {    
+        our $msg = "oc\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " oc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_ou eq "y" ) { 
+        our $msg = "ou\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " ou ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_pc eq "y" ) { 
+        our $msg = "pc\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " pc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_pu eq "y" ) { 
+        our $msg = "pu\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " pu ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_ygc eq "y" ) { 
+        our $msg = "ygc\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " ygc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_ygct eq "y" ) { 
+        our $msg = "ygct\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " ygct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+
+    }
+    if ( $Do_data_fgc eq eq "y" ) { 
+        our $msg = "fgc\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " fgc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+    }
+    if ( $Do_data_fgct eq "y" ) {
+        our $msg = "fgct\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " fgct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+    }
+    if ( $Do_data_gct eq "y" ) { 
+        our $msg = "gct\n";
+        my $dynamicLegend = "";
+        if ( $useNQACUtil == 1 ) {
+            eval {
+                my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
+                $ref_dynamicLegend->Initialize( " gct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+                $dynamicLegend = $ref_dynamicLegend->AsXML();
+            }
+        }
+    }
+}
+
+
+
 get_pids(); 
 get_jstats( @pids ); 
 check_threshholds(); 
+create_data(); 
 
 ]]>
 </Script>
