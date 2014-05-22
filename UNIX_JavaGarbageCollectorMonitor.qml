@@ -4,7 +4,6 @@
 ]]>
 </PROLOGUE>
 
-
 <KSID>
   <Type>Regular</Type>
   <Name>UNIX_JavaGarbageCollectorMonitor</Name>
