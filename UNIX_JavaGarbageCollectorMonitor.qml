@@ -9,8 +9,8 @@
   <Name>UNIX_JavaGarbageCollectorMonitor</Name>
   <Desc>Monitors AIX LPAR utilization</Desc>
   <Version>
-    <AppManID>7.4.61.0</AppManID>
-    <KSVerID>1.2</KSVerID>
+    <AppManID>8.0</AppManID>
+    <KSVerID>1.0</KSVerID>
   </Version>
   <NeedPWD>0</NeedPWD>
   <AdminOnly>0</AdminOnly>
@@ -470,6 +470,7 @@ sub get_pids {
     while ( <$fh> ) {
         push @pids, $_; 
     }
+    return @pids;
 }
 
 sub get_jstats {
