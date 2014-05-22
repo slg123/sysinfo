@@ -4,12 +4,13 @@
 ]]>
 </PROLOGUE>
 
+
 <KSID>
   <Type>Regular</Type>
   <Name>UNIX_JavaGarbageCollectorMonitor</Name>
   <Desc>Monitors Java Garbage Collector Statistics.</Desc>
   <Version>
-    <AppManID>8.0</AppManID>
+    <AppManID>6.5</AppManID>
     <KSVerID>1.0</KSVerID>
   </Version>
   <NeedPWD>0</NeedPWD>
@@ -18,7 +19,6 @@
   <DataSrcID>0</DataSrcID>
   <Platform>-1</Platform>
   <OptionExplicit>0</OptionExplicit>
-  <OriginKSName></OriginKSName>
 </KSID>
 
 <ObjType fullpath="0" dropfolderlist="0" styleversion="3">
@@ -46,9 +46,8 @@
 <DataSrc></DataSrc>
 
 <Parameter>
-  <Desc><![CDATA[Supported on:  [ALL LINUX AND UNIX PLATFORMS]]]>
-Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
-
+  <Desc>Supported on:  [ALL LINUX AND UNIX PLATFORMS]
+Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$EventSettings">
     <Desc>Event Settings</Desc>
     <ReqInput>0</ReqInput>
@@ -152,7 +151,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_pc">
     <Desc>Collect data for permanent space capacity?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>y</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -160,7 +160,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_pu">
     <Desc>Collect data for permanent space utilization?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -168,7 +169,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_ygc">
     <Desc>Collect data for number of young generation GC events?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -176,14 +178,17 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_ygct">
     <Desc>Collect data for young generation GC time?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
+  </Param>
   <Param name="$Do_data_fgc">
     <Desc>Collect data for number of full GC events?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -191,7 +196,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_fgct">
     <Desc>Collect data for full garbage collection time?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -199,7 +205,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   <Param name="$Do_data_gct">
     <Desc>Collect data for total garbage collection time?</Desc>
     <Value>y</Value>
-    <ReqInput>0</ReqInput>
+    <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -214,9 +221,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum S0C survivor space capacity (KB). -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -226,9 +233,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum survivor space 1 capacity (KB). -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -238,9 +245,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum survivor space 0 utilization (KB). -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -250,9 +257,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum current eden space utilization. -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -262,9 +269,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum total eden space utilization. -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -274,9 +281,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum current old space capacity. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -286,9 +293,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum old space utilization. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>%</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -298,9 +305,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum current permanent space capacity. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -310,9 +317,9 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum permanent space utilization. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
-    <Unit>KB</Unit>
+    <Max>20000</Max>
+    <Value>10000</Value>
+    <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
     <Folder>0</Folder>
@@ -322,8 +329,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Maximum number of young garbage collection events. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
+    <Max>20000</Max>
+    <Value>10000</Value>
     <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -334,8 +341,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- Young garbage collection time maximum. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
+    <Max>20000</Max>
+    <Value>10000</Value>
     <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -346,8 +353,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- number of full GC events. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
+    <Max>20000</Max>
+    <Value>10000</Value>
     <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -358,8 +365,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- full garbage collection time. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
+    <Max>20000</Max>
+    <Value>10000</Value>
     <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -370,8 +377,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Threshold -- total garbage collection time. -1 disables</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max></Max>
-    <Value></Value>
+    <Max>20000</Max>
+    <Value>10000</Value>
     <Unit></Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -453,7 +460,9 @@ NetIQ::Nqext::Uname($sysname, $nodename, $release, $version, $machine);
 printd("JavaGarbageCollectorMonitor ($KsVersion): Run at $RunTime, JobID=$JobID\n");
 printd("JavaGarbageCollectorMonitor: Uname returned sysname=$sysname, nodename=$nodename, version=$version, release=$release, machine=$machine\n");
 
-printd("UNIX_CPUFolder=$UNIX_CPUFolder UNIX_CPUObj=$UNIX_CPUObj TH_szero=$TH_szero TH_sone=$TH_sone TH_sou=$TH_sou TH_ec=$TH_ec TH_eu=$TH_eu TH_oc=$TH_oc TH_ou=$TH_ou TH_pc=$TH_pc TH_pu=$TH_pu TH_ygc=$TH_ygc TH_ygct=$TH_ygct TH_fgc=$TH_fgc TH_fgct=$TH_fgct TH_gct=$TH_gct\n");
+printd("UNIX_CPUFolder=$UNIX_CPUFolder UNIX_CPUObj=$UNIX_CPUObj TH_szero=$TH_szero 
+        TH_sone=$TH_sone TH_sou=$TH_sou TH_ec=$TH_ec TH_eu=$TH_eu TH_oc=$TH_oc TH_ou=$TH_ou 
+        TH_pc=$TH_pc TH_pu=$TH_pu TH_ygc=$TH_ygc TH_ygct=$TH_ygct TH_fgc=$TH_fgc TH_fgct=$TH_fgct TH_gct=$TH_gct\n");
 
 my $cmdline;
 our $resmsg = "UNIX_CPUFolder = $UNIX_CPUFolder";
@@ -612,3 +621,4 @@ if ( defined( get_pids() ) {
 ]]>
 </Script>
 </ScriptDef>
+
