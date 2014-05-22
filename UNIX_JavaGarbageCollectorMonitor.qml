@@ -87,7 +87,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_szero">
     <Desc>Collect data for current survivor space 0 capacity?</Desc>
-    <Value>n</Value>
+    <Value>y</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -96,7 +96,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_sone">
     <Desc>Collect data for current survivor space 1 capacity?</Desc>
-    <Value>n</Value>
+    <Value>y</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -105,7 +105,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_sou">
     <Desc>Collect data for survivor space 0 utilization?</Desc>
-    <Value>n</Value>
+    <Value>y</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -114,7 +114,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_ec">
     <Desc>Collect data for current eden space capacity?</Desc>
-    <Value>n</Value>
+    <Value>y</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -152,7 +152,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
     <Desc>Collect data for permanent space capacity?</Desc>
     <Value>y</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
-    <ReqInput>y</ReqInput>
+    <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
     <Folder>0</Folder>
     <NoQuote>0</NoQuote>
@@ -440,9 +440,10 @@ my $KsVersion = '$Revision: #11 $ $DateTime: 2014/5/22 17:48:53 $';
 
 our $useNQACUtil = 1;
 eval 'require "NetIQ/NQACUtil.pm"';
-if($@) {
+if($@) 
+{
     $useNQACUtil = 0;
-    printd ("useNQACUtil = 0\n");
+    &printd ("useNQACUtil = 0\n");
 }
 
 sub printd {
@@ -491,7 +492,7 @@ our $Do_data_gct   = 0;
 our @pids;
 sub get_pids {
     my $cmd = "ps -ef | grep java | awk '{ print \$2 }'";
-    open my $fh, "-|", $cmd or die "cannot open: $!"; 
+    open my $fh, "-|", $cmd; 
     while ( <$fh> ) {
         push @pids, $_; 
     }
@@ -499,10 +500,10 @@ sub get_pids {
 }
 
 sub get_jstats {
-    my $cmd = "/usr/bin/jstat -gc $pid"; 
     my @java_pids = shift;
-    foreach my $pid ( @java_pids ) {
-        open my $fh, "-|", $cmd or die "cannot open: $!"; 
+    for ( @java_pids ) {
+        my $cmd = "/usr/bin/jstat -gc $_"; 
+        open my $fh, "-|", $cmd; 
         while ( <$fh> ) {
             my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
             if ( /\d+.\d/ ) {
@@ -530,93 +531,92 @@ sub check_threshholds {
     if ( $TH_szero ) {
         if ( $Do_data_szero > $TH_szero ) {
             my $detail_msg = "Threshhold for survivor space 0 capacity exceeded. Threshold is $TH_szero";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_sone ) {
         if ( $Do_data_sone > $TH_sone ) {
             my $detail_msg = "Threshhold for survivor space 1 capacity exceeded. Threshold is $TH_sone";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_sou ) {
         if ( $Do_data_sou > $TH_sou ) {
             my $detail_msg = "Threshhold for survivor space 0 utilization exceeded. Threshold is $TH_sou";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ec ) {
         if ( $Do_data_ec > $TH_ec ) {
             my $detail_msg = "Threshhold for eden space capacity exceeded. Threshold is $TH_ec";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_eu ) {
         if ( $Do_data_eu > $TH_eu ) {
             my $detail_msg = "Threshhold for eden space utilization exceeded. Threshold is $TH_eu";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_oc ) {
         if ( $Do_data_oc > $TH_oc ) {
             my $detail_msg = "Threshhold for old space capacity exceeded. Threshold is $TH_oc";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ou ) {
         if ( $Do_data_ou > $TH_ou ) {
             my $detail_msg = "Threshhold for old space utilization exceeded. Threshold is $TH_ou";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_pc ) {
         if ( $Do_data_pc > $TH_pc ) {
             my $detail_msg = "Threshhold old current permanent space capacity exceeded. Threshold is $TH_pc";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_pu ) {
         if ( $Do_data_pu > $TH_pu ) {
             my $detail_msg = "Threshhold for permanent space utilization exceeded. Threshold is $TH_pu";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ygc ) {
         if ( $Do_data_ygc > $TH_ygc ) {
             my $detail_msg = "Threshhold for number of young GC events exceeded. Threshold is $TH_ygc";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ygct ) {
         if ( $Do_data_ygct > $TH_ygct ) {
             my $detail_msg = "Threshhold for young GC collection time exceeded. Threshold is $TH_ygct";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_fgc ) {
         if ( $Do_data_fgc > $TH_fgc ) {
             my $detail_msg = "Threshhold for number of full GC events. Threshold is $TH_fgc";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_fgct ) {
         if ( $Do_data_fgct > $TH_fgct ) {
             my $detail_msg = "Threshhold for full garbage collection time. Threshold is $TH_fgct";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_gct ) {
         if ( $Do_data_gct > $TH_gct ) {
             my $detail_msg = "Threshhold for total garbage collection time. Threshold is $TH_gct";
-            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detailmsg, 0, 0, 0 ); 
+            NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
 }
 
-if ( defined( get_pids() ) {
-    get_jstats( @pids ); 
-    check_threshholds(); 
-}
+get_pids(); 
+get_jstats( @pids ); 
+check_threshholds(); 
 
 ]]>
 </Script>
