@@ -450,7 +450,6 @@ printd("AIXLparUtil: Uname returned sysname=$sysname, nodename=$nodename, versio
 
 printd("UNIX_CPUFolder=$UNIX_CPUFolder UNIX_CPUObj=$UNIX_CPUObj TH_szero=$TH_szero TH_sone=$TH_sone TH_sou=$TH_sou TH_ec=$TH_ec TH_eu=$TH_eu TH_oc=$TH_oc TH_ou=$TH_ou TH_pc=$TH_pc TH_pu=$TH_pu TH_ygc=$TH_ygc TH_ygct=$TH_ygct TH_fgc=$TH_fgc TH_fgct=$TH_fgct TH_gct=$TH_gct\n");
 
-
 my $cmdline;
 our $resmsg = "UNIX_CPUFolder = $UNIX_CPUFolder";
 
@@ -458,7 +457,6 @@ my $detail_msg;
 our $agentOwner = NetIQ::Nqext::GetAgentOwner();
 
 my $agentVersion = (split(/\./, NetIQ::Nqext::GetVersion()))[0];
-
 
 our @pids;
 sub get_pids {
