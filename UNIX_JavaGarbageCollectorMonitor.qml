@@ -405,8 +405,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
 </AdvanceConfig>
 
 <ScriptDef>
-  <Script language="perl">
-<![CDATA[
+<Script language="perl">
+<![CDATA[###
 ### Please do not remove the following comments.
 ### Version string added by setQMLVersion.exe during build process.
 ### Copyright (c) 2014 NetIQ Corporation. All rights reserved.
@@ -423,9 +423,8 @@ Monitors Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
 ###
 ### -------------------------------------------------------------------------
 
-# begin main
-use NetIQ::Nqext;
 use strict;
+use NetIQ::Nqext;
 our $Sev_fail = 10;
 our $iterCount = 0;
 my $JobID = NetIQ::Nqext::GetJobID();
@@ -596,4 +595,3 @@ if ( defined( get_pids() ) {
 ]]>
 </Script>
 </ScriptDef>
-
