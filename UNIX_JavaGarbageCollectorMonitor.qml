@@ -475,7 +475,7 @@ sub get_pids {
 
 sub get_jstats {
     my $cmd = "/usr/bin/jstat -gc $pid"; 
-    my @java_pids = @_;
+    my @java_pids = shift;
     foreach my $pid ( @java_pids ) {
         open my $fh, "-|", $cmd or die "cannot open: $!"; 
         while ( <$fh> ) {
