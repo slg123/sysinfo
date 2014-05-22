@@ -428,13 +428,11 @@ my $KsVersion = '$Revision: #11 $ $DateTime: 2010/10/20 17:48:53 $';
 
 our $useNQACUtil = 1;
 eval 'require "NetIQ/NQACUtil.pm"';
-if($@)
-{
+if($@) {
   $useNQACUtil = 0;
   printd ("useNQACUtil = 0\n");
 }
 
-# Debug function
 sub printd {
   if ($debug eq 'y') {
       open(DEBUG, ">>$ENV{NQMAGT_HOME}/log/UNIX_JavaGarbageCollectorMonitor${JobID}");
