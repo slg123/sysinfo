@@ -588,9 +588,10 @@ sub check_threshholds {
     }
 }
 
-get_pids();
-get_jstats( @pids ); 
-check_threshholds(); 
+if ( defined( get_pids() ) {
+    get_jstats( @pids ); 
+    check_threshholds(); 
+}
 
 ]]>
 </Script>
