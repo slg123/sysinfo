@@ -7,7 +7,7 @@
 <KSID>
   <Type>Regular</Type>
   <Name>UNIX_JavaGarbageCollectorMonitor</Name>
-  <Desc>Monitors AIX LPAR utilization</Desc>
+  <Desc>Monitors Java Garbage Collector Statistics.</Desc>
   <Version>
     <AppManID>8.0</AppManID>
     <KSVerID>1.0</KSVerID>
@@ -450,8 +450,8 @@ sub printd {
 our ($sysname, $nodename, $release, $version, $machine);
 
 NetIQ::Nqext::Uname($sysname, $nodename, $release, $version, $machine);
-printd("AIXLparUtil ($KsVersion): Run at $RunTime, JobID=$JobID\n");
-printd("AIXLparUtil: Uname returned sysname=$sysname, nodename=$nodename, version=$version, release=$release, machine=$machine\n");
+printd("JavaGarbageCollectorMonitor ($KsVersion): Run at $RunTime, JobID=$JobID\n");
+printd("JavaGarbageCollectorMonitor: Uname returned sysname=$sysname, nodename=$nodename, version=$version, release=$release, machine=$machine\n");
 
 printd("UNIX_CPUFolder=$UNIX_CPUFolder UNIX_CPUObj=$UNIX_CPUObj TH_szero=$TH_szero TH_sone=$TH_sone TH_sou=$TH_sou TH_ec=$TH_ec TH_eu=$TH_eu TH_oc=$TH_oc TH_ou=$TH_ou TH_pc=$TH_pc TH_pu=$TH_pu TH_ygc=$TH_ygc TH_ygct=$TH_ygct TH_fgc=$TH_fgc TH_fgct=$TH_fgct TH_gct=$TH_gct\n");
 
