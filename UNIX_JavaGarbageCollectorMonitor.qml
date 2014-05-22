@@ -47,7 +47,7 @@
 <DataSrc></DataSrc>
 
 <Parameter>
-  <Desc>Supported on:  [ALL LINUX AND UNIX PLATFORM]
+  <Desc>Supported on:  [ALL LINUX AND UNIX PLATFORMS]
 Runs jstat command and gathers statistics. Please see the manual page for jstat(1) and Oracle documentation.</Desc>
   <Param name="$GeneralSettings">
     <Desc>General Settings</Desc>
