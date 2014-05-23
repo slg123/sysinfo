@@ -87,7 +87,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_szero">
     <Desc>Collect data for current survivor space 0 capacity?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -96,7 +96,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_sone">
     <Desc>Collect data for current survivor space 1 capacity?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -105,7 +105,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_sou">
     <Desc>Collect data for survivor space 0 utilization?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -114,7 +114,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_ec">
     <Desc>Collect data for current eden space capacity?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -123,7 +123,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_eu">
     <Desc>Collect data for eden space utilization?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -132,7 +132,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_oc">
     <Desc>Collect data for current old space capacity?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -141,7 +141,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_ou">
     <Desc>Collect data for old space utilization?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <Parent>$Data_Options</Parent>
@@ -150,7 +150,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_pc">
     <Desc>Collect data for permanent space capacity?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -159,7 +159,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_pu">
     <Desc>Collect data for permanent space utilization?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -168,7 +168,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_ygc">
     <Desc>Collect data for number of young generation GC events?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -177,7 +177,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_ygct">
     <Desc>Collect data for young generation GC time?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -186,7 +186,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_fgc">
     <Desc>Collect data for number of full GC events?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -195,7 +195,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_fgct">
     <Desc>Collect data for full garbage collection time?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
@@ -204,7 +204,7 @@ Java Garbage Collection statistics ( jstat -gc PID ).</Desc>
   </Param>
   <Param name="$Do_data_gct">
     <Desc>Collect data for total garbage collection time?</Desc>
-    <Value>y</Value>
+    <Value>n</Value>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
     <ReqInput>1</ReqInput>
     <Parent>$Data_Options</Parent>
