@@ -516,10 +516,10 @@ sub get_jstats {
         }
         close $fh;
     }
-    printd( "DEBUG: $Do_data_szero $Do_data_sone $Do_data_sou $Do_data_ec $Do_data_eu $Do_data_eu $Do_data_oc $Do_data_ou $Do_data_pc $Do_data_pu $Do_data_ygc $Do_data_ygct $Do_data_fgc $Do_data_fgct $Do_data_gct" ); 
-}
 
-sub check_threshholds {
+    printd( "DEBUG: $Do_data_szero $Do_data_sone $Do_data_sou $Do_data_ec $Do_data_eu $Do_data_oc $Do_data_ou $Do_data_pc $Do_data_pu $Do_data_ygc $Do_data_ygct $Do_data_fgc $Do_data_fgct $Do_data_gct" ); 
+    printd( "DEBUG: $TH_szero $TH_sone $TH_sou $TH_ec $TH_eu $TH_oc $TH_ou $TH_pc $TH_pu $TH_ygc $TH_ygct $TH_fgc $TH_fgct $TH_gct" ); 
+
     if ( $TH_szero ) {
         if ( $Do_data_szero > $TH_szero ) {
             my $detail_msg = "Threshhold for survivor space 0 capacity exceeded. Threshold is $TH_szero";
@@ -604,9 +604,7 @@ sub check_threshholds {
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
-}
 
-sub create_data {  
     #
     # Create data points for chart console. 
     # 
@@ -761,10 +759,7 @@ sub create_data {
         }
     }
 }
-
 get_jstats(); 
-check_threshholds(); 
-create_data(); 
 
 ]]>
 </Script>
