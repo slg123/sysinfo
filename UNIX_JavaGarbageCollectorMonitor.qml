@@ -617,7 +617,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " szero ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/szero", "szero", $dynamicLegend, $resmsg, $Do_data_szero, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/szero", "szero", $dynamicLegend, $resmsg, "", "", $Do_data_szero ); 
         }
     }
     if ( $Do_data_sone eq "y" ) {
@@ -627,7 +627,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " sone ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/sone", "sone", $dynamicLegend, $resmsg, $Do_data_sone, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/sone", "sone", $dynamicLegend, $resmsg, "", "", $Do_data_sone ); 
         }
 
     }
@@ -638,7 +638,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " sou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/sou", "sou", $dynamicLegend, $resmsg, $Do_data_sou, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/sou", "sou", $dynamicLegend, $resmsg, "", "", $Do_data_sou ); 
         }
 
     }
@@ -649,7 +649,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ec ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ec", "ec", $dynamicLegend, $resmsg, $Do_data_ec, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/ec", "ec", $dynamicLegend, $resmsg, "", "", $Do_data_ec ); 
         }
 
     }
@@ -660,7 +660,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " eu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/eu", "eu", $dynamicLegend, $resmsg, $Do_data_eu, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/eu", "eu", $dynamicLegend, $resmsg, "", "", $Do_data_eu ); 
         }
 
     }
@@ -671,7 +671,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " oc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/oc", "oc", $dynamicLegend, $resmsg, $Do_data_oc, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/oc", "oc", $dynamicLegend, $resmsg, "", "", $Do_data_oc ); 
         }
 
     }
@@ -682,7 +682,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ou", "ou", $dynamicLegend, $resmsg, $Do_data_ou, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/ou", "ou", $dynamicLegend, $resmsg, "", "", $Do_data_ou ); 
         }
 
     }
@@ -693,7 +693,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " pc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/pc", "pc", $dynamicLegend, $resmsg, $Do_data_pc, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/pc", "pc", $dynamicLegend, $resmsg, "", "", $Do_data_pc ); 
         }
 
     }
@@ -704,7 +704,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " pu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/pu", "pu", $dynamicLegend, $resmsg, $Do_data_pu, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/pu", "pu", $dynamicLegend, $resmsg, "", "", $Do_data_pu ); 
         }
 
     }
@@ -715,7 +715,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ygc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ygc", "ygc", $dynamicLegend, $resmsg, $Do_data_ygc, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/ygc", "ygc", $dynamicLegend, $resmsg, "", "", $Do_data_ygc ); 
         }
 
     }
@@ -726,7 +726,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ygct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ygct", "ygct", $dynamicLegend, $resmsg, $Do_data_ygct, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/ygct", "ygct", $dynamicLegend, $resmsg, "", "", $Do_data_ygct ); 
         }
 
     }
@@ -737,7 +737,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " fgc ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/fgc", "fgc", $dynamicLegend, $resmsg, $Do_data_fgc, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/fgc", "fgc", $dynamicLegend, $resmsg, "", "", $Do_data_fgc ); 
         }
     }
     if ( $Do_data_fgct eq "y" ) {
@@ -747,7 +747,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " fgct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/fgct", "fgct", $dynamicLegend, $resmsg, $Do_data_fgct, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/fgct", "fgct", $dynamicLegend, $resmsg, "", "", $Do_data_fgct ); 
         }
     }
     if ( $Do_data_gct eq "y" ) { 
@@ -757,7 +757,7 @@ sub create_data {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " gct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/gct", "gct", $dynamicLegend, $resmsg, $Do_data_gct, "", 0 ); 
+            NetIQ::Nqext::CreateData("Java/gct", "gct", $dynamicLegend, $resmsg, "", "", $Do_data_gct ); 
         }
     }
 }
