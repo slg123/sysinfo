@@ -475,20 +475,20 @@ my $agentVersion = (split(/\./, NetIQ::Nqext::GetVersion()))[0];
 
 sub get_jstats {
     # initialize total counters for Java GC stats
-    my $Do_data_szero = 0;
-    my $Do_data_sone  = 0; 
-    my $Do_data_sou   = 0;
-    my $Do_data_ec    = 0;
-    my $Do_data_eu    = 0;
-    my $Do_data_oc    = 0;
-    my $Do_data_ou    = 0;
-    my $Do_data_pc    = 0;
-    my $Do_data_pu    = 0;
-    my $Do_data_ygc   = 0;
-    my $Do_data_ygct  = 0;
-    my $Do_data_fgc   = 0;
-    my $Do_data_fgct  = 0;
-    my $Do_data_gct   = 0;
+    my $data_szero = 0;
+    my $data_sone  = 0; 
+    my $data_sou   = 0;
+    my $data_ec    = 0;
+    my $data_eu    = 0;
+    my $data_oc    = 0;
+    my $data_ou    = 0;
+    my $data_pc    = 0;
+    my $data_pu    = 0;
+    my $data_ygc   = 0;
+    my $data_ygct  = 0;
+    my $data_fgc   = 0;
+    my $data_fgct  = 0;
+    my $data_gct   = 0;
 
     my $java_pids = `ps -C java | awk '/[0-9]/ { print \$1 }'`;
     my @pids = split '\n', $java_pids;
@@ -498,108 +498,107 @@ sub get_jstats {
         while ( <$fh> ) {
             my ( $szero, $sone, $sou, $ec, $eu, $oc, $ou, $pc, $pu, $ygc, $ygct, $fgc, $fgct, $gct ) = split /\s+/;
             if ( /\d+.\d/ ) {
-                $Do_data_szero += $szero;
-                $Do_data_sone  += $sone;
-                $Do_data_sou   += $sou;
-                $Do_data_ec    += $ec;
-                $Do_data_eu    += $eu;
-                $Do_data_oc    += $oc;
-                $Do_data_ou    += $ou;
-                $Do_data_pc    += $pc;
-                $Do_data_pu    += $pu;
-                $Do_data_ygc   += $ygc;
-                $Do_data_ygct  += $ygct;
-                $Do_data_fgc   += $fgc;
-                $Do_data_fgct  += $fgct;
-                $Do_data_gct   += $gct;
+                $data_szero += $szero;
+                $data_sone  += $sone;
+                $data_sou   += $sou;
+                $data_ec    += $ec;
+                $data_eu    += $eu;
+                $data_oc    += $oc;
+                $data_ou    += $ou;
+                $data_pc    += $pc;
+                $data_pu    += $pu;
+                $data_ygc   += $ygc;
+                $data_ygct  += $ygct;
+                $data_fgc   += $fgc;
+                $data_fgct  += $fgct;
+                $data_gct   += $gct;
             }
         }
         close $fh;
     }
 
-    printd( "DEBUG: $Do_data_szero $Do_data_sone $Do_data_sou $Do_data_ec $Do_data_eu $Do_data_oc $Do_data_ou $Do_data_pc $Do_data_pu $Do_data_ygc $Do_data_ygct $Do_data_fgc $Do_data_fgct $Do_data_gct" ); 
-    printd( "DEBUG: $TH_szero $TH_sone $TH_sou $TH_ec $TH_eu $TH_oc $TH_ou $TH_pc $TH_pu $TH_ygc $TH_ygct $TH_fgc $TH_fgct $TH_gct" ); 
+    printd( "DEBUG: $data_szero $data_sone $data_sou $data_ec $data_eu $data_oc $data_ou $data_pc $data_pu $data_ygc $data_ygct $data_fgc $data_fgct $data_gct" ); 
 
     if ( $TH_szero ) {
-        if ( $Do_data_szero > $TH_szero ) {
+        if ( $data_szero > $TH_szero ) {
             my $detail_msg = "Threshhold for survivor space 0 capacity exceeded. Threshold is $TH_szero";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_sone ) {
-        if ( $Do_data_sone > $TH_sone ) {
+        if ( $data_sone > $TH_sone ) {
             my $detail_msg = "Threshhold for survivor space 1 capacity exceeded. Threshold is $TH_sone";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_sou ) {
-        if ( $Do_data_sou > $TH_sou ) {
+        if ( $data_sou > $TH_sou ) {
             my $detail_msg = "Threshhold for survivor space 0 utilization exceeded. Threshold is $TH_sou";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ec ) {
-        if ( $Do_data_ec > $TH_ec ) {
+        if ( $data_ec > $TH_ec ) {
             my $detail_msg = "Threshhold for eden space capacity exceeded. Threshold is $TH_ec";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_eu ) {
-        if ( $Do_data_eu > $TH_eu ) {
+        if ( $data_eu > $TH_eu ) {
             my $detail_msg = "Threshhold for eden space utilization exceeded. Threshold is $TH_eu";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_oc ) {
-        if ( $Do_data_oc > $TH_oc ) {
+        if ( $data_oc > $TH_oc ) {
             my $detail_msg = "Threshhold for old space capacity exceeded. Threshold is $TH_oc";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ou ) {
-        if ( $Do_data_ou > $TH_ou ) {
+        if ( $data_ou > $TH_ou ) {
             my $detail_msg = "Threshhold for old space utilization exceeded. Threshold is $TH_ou";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_pc ) {
-        if ( $Do_data_pc > $TH_pc ) {
+        if ( $data_pc > $TH_pc ) {
             my $detail_msg = "Threshhold old current permanent space capacity exceeded. Threshold is $TH_pc";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_pu ) {
-        if ( $Do_data_pu > $TH_pu ) {
+        if ( $data_pu > $TH_pu ) {
             my $detail_msg = "Threshhold for permanent space utilization exceeded. Threshold is $TH_pu";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ygc ) {
-        if ( $Do_data_ygc > $TH_ygc ) {
+        if ( $data_ygc > $TH_ygc ) {
             my $detail_msg = "Threshhold for number of young GC events exceeded. Threshold is $TH_ygc";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_ygct ) {
-        if ( $Do_data_ygct > $TH_ygct ) {
+        if ( $data_ygct > $TH_ygct ) {
             my $detail_msg = "Threshhold for young GC collection time exceeded. Threshold is $TH_ygct";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_fgc ) {
-        if ( $Do_data_fgc > $TH_fgc ) {
+        if ( $data_fgc > $TH_fgc ) {
             my $detail_msg = "Threshhold for number of full GC events. Threshold is $TH_fgc";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_fgct ) {
-        if ( $Do_data_fgct > $TH_fgct ) {
+        if ( $data_fgct > $TH_fgct ) {
             my $detail_msg = "Threshhold for full garbage collection time. Threshold is $TH_fgct";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
     }
     if ( $TH_gct ) {
-        if ( $Do_data_gct > $TH_gct ) {
+        if ( $data_gct > $TH_gct ) {
             my $detail_msg = "Threshhold for total garbage collection time. Threshold is $TH_gct";
             NetIQ::Nqext::CreateEvent( $Severity, "", $Akpid, "", 0, $detail_msg, 0, 0, 0 ); 
         }
@@ -615,7 +614,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " szero ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/szero", "szero", $dynamicLegend, $resmsg, "", "", $Do_data_szero ); 
+            NetIQ::Nqext::CreateData("Java/szero", "szero", $dynamicLegend, $resmsg, $data_szero, "", 0 ); 
         }
     }
     if ( $Do_data_sone eq "y" ) {
@@ -625,7 +624,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " sone ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/sone", "sone", $dynamicLegend, $resmsg, "", "", $Do_data_sone ); 
+            NetIQ::Nqext::CreateData("Java/sone", "sone", $dynamicLegend, $resmsg, $data_sone, "", 0 ); 
         }
 
     }
@@ -636,7 +635,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " sou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/sou", "sou", $dynamicLegend, $resmsg, "", "", $Do_data_sou ); 
+            NetIQ::Nqext::CreateData("Java/sou", "sou", $dynamicLegend, $resmsg, $data_sou, "", 0 ); 
         }
 
     }
@@ -647,7 +646,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ec ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ec", "ec", $dynamicLegend, $resmsg, "", "", $Do_data_ec ); 
+            NetIQ::Nqext::CreateData("Java/ec", "ec", $dynamicLegend, $resmsg, $data_ec, "", 0 ); 
         }
 
     }
@@ -658,7 +657,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " eu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/eu", "eu", $dynamicLegend, $resmsg, "", "", $Do_data_eu ); 
+            NetIQ::Nqext::CreateData("Java/eu", "eu", $dynamicLegend, $resmsg, $data_eu, "", 0 ); 
         }
 
     }
@@ -669,7 +668,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " oc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/oc", "oc", $dynamicLegend, $resmsg, "", "", $Do_data_oc ); 
+            NetIQ::Nqext::CreateData("Java/oc", "oc", $dynamicLegend, $resmsg, $data_oc, "", 0 ); 
         }
 
     }
@@ -680,7 +679,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ou", "ou", $dynamicLegend, $resmsg, "", "", $Do_data_ou ); 
+            NetIQ::Nqext::CreateData("Java/ou", "ou", $dynamicLegend, $resmsg, $data_ou, "", 0 ); 
         }
 
     }
@@ -691,7 +690,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " pc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/pc", "pc", $dynamicLegend, $resmsg, "", "", $Do_data_pc ); 
+            NetIQ::Nqext::CreateData("Java/pc", "pc", $dynamicLegend, $resmsg, $data_pc, "", 0 ); 
         }
 
     }
@@ -702,7 +701,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " pu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/pu", "pu", $dynamicLegend, $resmsg, "", "", $Do_data_pu ); 
+            NetIQ::Nqext::CreateData("Java/pu", "pu", $dynamicLegend, $resmsg, $data_pu, "", 0 ); 
         }
 
     }
@@ -713,7 +712,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ygc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ygc", "ygc", $dynamicLegend, $resmsg, "", "", $Do_data_ygc ); 
+            NetIQ::Nqext::CreateData("Java/ygc", "ygc", $dynamicLegend, $resmsg, $data_ygc, "", 0 ); 
         }
 
     }
@@ -724,7 +723,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " ygct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/ygct", "ygct", $dynamicLegend, $resmsg, "", "", $Do_data_ygct ); 
+            NetIQ::Nqext::CreateData("Java/ygct", "ygct", $dynamicLegend, $resmsg, $data_ygct, "", 0 ); 
         }
 
     }
@@ -735,7 +734,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " fgc ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/fgc", "fgc", $dynamicLegend, $resmsg, "", "", $Do_data_fgc ); 
+            NetIQ::Nqext::CreateData("Java/fgc", "fgc", $dynamicLegend, $resmsg, $data_fgc, "", 0 ); 
         }
     }
     if ( $Do_data_fgct eq "y" ) {
@@ -745,7 +744,7 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " fgct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/fgct", "fgct", $dynamicLegend, $resmsg, "", "", $Do_data_fgct ); 
+            NetIQ::Nqext::CreateData("Java/fgct", "fgct", $dynamicLegend, $resmsg, $data_fgct, "", 0 ); 
         }
     }
     if ( $Do_data_gct eq "y" ) { 
@@ -755,10 +754,11 @@ sub get_jstats {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
             $ref_dynamicLegend->Initialize( " gct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
-            NetIQ::Nqext::CreateData("Java/gct", "gct", $dynamicLegend, $resmsg, "", "", $Do_data_gct ); 
+            NetIQ::Nqext::CreateData("Java/gct", "gct", $dynamicLegend, $resmsg, $data_gct, "", 0 ); 
         }
     }
 }
+
 get_jstats(); 
 
 ]]>
