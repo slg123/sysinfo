@@ -473,24 +473,23 @@ our $agentOwner = NetIQ::Nqext::GetAgentOwner();
 
 my $agentVersion = (split(/\./, NetIQ::Nqext::GetVersion()))[0];
 
-# initialize total counters for Java GC stats
-my $Do_data_szero = 0;
-my $Do_data_sone  = 0; 
-my $Do_data_sou   = 0;
-my $Do_data_ec    = 0;
-my $Do_data_eu    = 0;
-my $Do_data_oc    = 0;
-my $Do_data_ou    = 0;
-my $Do_data_pc    = 0;
-my $Do_data_pu    = 0;
-my $Do_data_ygc   = 0;
-my $Do_data_ygct  = 0;
-my $Do_data_fgc   = 0;
-my $Do_data_fgct  = 0;
-my $Do_data_gct   = 0;
-
-
 sub get_jstats {
+    # initialize total counters for Java GC stats
+    my $Do_data_szero = 0;
+    my $Do_data_sone  = 0; 
+    my $Do_data_sou   = 0;
+    my $Do_data_ec    = 0;
+    my $Do_data_eu    = 0;
+    my $Do_data_oc    = 0;
+    my $Do_data_ou    = 0;
+    my $Do_data_pc    = 0;
+    my $Do_data_pu    = 0;
+    my $Do_data_ygc   = 0;
+    my $Do_data_ygct  = 0;
+    my $Do_data_fgc   = 0;
+    my $Do_data_fgct  = 0;
+    my $Do_data_gct   = 0;
+
     my $java_pids = `ps -C java | awk '/[0-9]/ { print \$1 }'`;
     my @pids = split '\n', $java_pids;
     for ( @pids ) {
