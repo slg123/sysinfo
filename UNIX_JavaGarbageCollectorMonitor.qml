@@ -474,34 +474,26 @@ our $agentOwner = NetIQ::Nqext::GetAgentOwner();
 my $agentVersion = (split(/\./, NetIQ::Nqext::GetVersion()))[0];
 
 # initialize total counters for Java GC stats
-our $Do_data_szero = 0;
-our $Do_data_sone  = 0; 
-our $Do_data_sou   = 0;
-our $Do_data_ec    = 0;
-our $Do_data_eu    = 0;
-our $Do_data_oc    = 0;
-our $Do_data_ou    = 0;
-our $Do_data_pc    = 0;
-our $Do_data_pu    = 0;
-our $Do_data_ygc   = 0;
-our $Do_data_ygct  = 0;
-our $Do_data_fgc   = 0;
-our $Do_data_fgct  = 0;
-our $Do_data_gct   = 0;
+my $Do_data_szero = 0;
+my $Do_data_sone  = 0; 
+my $Do_data_sou   = 0;
+my $Do_data_ec    = 0;
+my $Do_data_eu    = 0;
+my $Do_data_oc    = 0;
+my $Do_data_ou    = 0;
+my $Do_data_pc    = 0;
+my $Do_data_pu    = 0;
+my $Do_data_ygc   = 0;
+my $Do_data_ygct  = 0;
+my $Do_data_fgc   = 0;
+my $Do_data_fgct  = 0;
+my $Do_data_gct   = 0;
 
-our @pids;
-sub get_pids {
-    my $cmd = "ps -ef | grep java | awk '{ print \$2 }'";
-    open my $fh, "-|", $cmd; 
-    while ( <$fh> ) {
-        push @pids, $_; 
-    }
-    return @pids;
-}
 
 sub get_jstats {
-    my @java_pids = shift;
-    for ( @java_pids ) {
+    my $java_pids = `ps -C java | awk '/[0-9]/ { print \$1 }'`;
+    my @pids = split '\n', $java_pids;
+    for ( @pids ) {
         my $cmd = "/usr/bin/jstat -gc $_"; 
         open my $fh, "-|", $cmd; 
         while ( <$fh> ) {
@@ -525,6 +517,7 @@ sub get_jstats {
         }
         close $fh;
     }
+    printd( "DEBUG: $Do_data_szero $Do_data_sone $Do_data_sou $Do_data_ec $Do_data_eu $Do_data_eu $Do_data_oc $Do_data_ou $Do_data_pc $Do_data_pu $Do_data_ygc $Do_data_ygct $Do_data_fgc $Do_data_fgct $Do_data_gct" ); 
 }
 
 sub check_threshholds {
@@ -614,13 +607,16 @@ sub check_threshholds {
     }
 }
 
-sub create_data {  # create datapoints for chart console
+sub create_data {  
+    #
+    # Create data points for chart console. 
+    # 
     if ( $Do_data_szero eq "y" ) {
         our $msg = "szero\n";
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " szero ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " szero ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/szero", "szero", $dynamicLegend, $resmsg, $Do_data_szero, "", 0 ); 
         }
@@ -630,7 +626,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " sone ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " sone ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/sone", "sone", $dynamicLegend, $resmsg, $Do_data_sone, "", 0 ); 
         }
@@ -641,7 +637,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " sou ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " sou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/sou", "sou", $dynamicLegend, $resmsg, $Do_data_sou, "", 0 ); 
         }
@@ -652,7 +648,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " ec ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " ec ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/ec", "ec", $dynamicLegend, $resmsg, $Do_data_ec, "", 0 ); 
         }
@@ -663,7 +659,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " eu ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " eu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/eu", "eu", $dynamicLegend, $resmsg, $Do_data_eu, "", 0 ); 
         }
@@ -674,7 +670,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " oc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " oc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/oc", "oc", $dynamicLegend, $resmsg, $Do_data_oc, "", 0 ); 
         }
@@ -685,7 +681,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " ou ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " ou ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/ou", "ou", $dynamicLegend, $resmsg, $Do_data_ou, "", 0 ); 
         }
@@ -696,7 +692,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " pc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " pc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/pc", "pc", $dynamicLegend, $resmsg, $Do_data_pc, "", 0 ); 
         }
@@ -707,7 +703,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " pu ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " pu ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/pu", "pu", $dynamicLegend, $resmsg, $Do_data_pu, "", 0 ); 
         }
@@ -718,7 +714,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " ygc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " ygc ", "", "UNIX_JavaGarbageCollectormonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/ygc", "ygc", $dynamicLegend, $resmsg, $Do_data_ygc, "", 0 ); 
         }
@@ -729,7 +725,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " ygct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " ygct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/ygct", "ygct", $dynamicLegend, $resmsg, $Do_data_ygct, "", 0 ); 
         }
@@ -740,7 +736,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " fgc ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " fgc ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/fgc", "fgc", $dynamicLegend, $resmsg, $Do_data_fgc, "", 0 ); 
         }
@@ -750,7 +746,7 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " fgct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " fgct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/fgct", "fgct", $dynamicLegend, $resmsg, $Do_data_fgct, "", 0 ); 
         }
@@ -760,17 +756,14 @@ sub create_data {  # create datapoints for chart console
         my $dynamicLegend = "";
         if ( $useNQACUtil == 1 ) {
             my $ref_dynamicLegend = NetIQ::NQACUtil::NQDynamicLegend->new();
-            $ref_dynamicLegend->Initialize( " gct ", "", "UNIX_CPU", "UNIX", $resmsg, "", "", "" );
+            $ref_dynamicLegend->Initialize( " gct ", "", "UNIX_JavaGarbageCollectorMonitor", "UNIX", $resmsg, "", "", "" );
             $dynamicLegend = $ref_dynamicLegend->AsXML();
             NetIQ::Nqext::CreateData("Java/gct", "gct", $dynamicLegend, $resmsg, $Do_data_gct, "", 0 ); 
         }
     }
 }
 
-
-
-get_pids(); 
-get_jstats( @pids ); 
+get_jstats(); 
 check_threshholds(); 
 create_data(); 
 
