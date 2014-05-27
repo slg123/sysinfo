@@ -30,5 +30,6 @@ if ( $port ) {
 $connection->autoflush(1);
 print "DEBUG: $connection ->" . "HEAD $url HTTP/1.0" . "\015\012" . "\015\012";
 print "DEBUG: $connection\n"; 
-my $line = <$connection>;
+exit(42); 
+#my $line = <$connection>;
 
