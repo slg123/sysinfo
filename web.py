@@ -1,17 +1,25 @@
 #!/usr/bin/env python
 
+# oh fuck this terrible code. 
+
 file = open( 'web.log', 'r' )
 
 ips = set()
 
-def get_uniques():
+#
+# build a set of unique IP addresses
+#
+def get_unique_ips():
     for line in file:
         column = line.split(' ')
         ip = column[0]
         ips.add( ip )
 
-get_uniques()
+get_unique_ips()
 
+#
+# get a count of how many times the IP shows up in the logfile
+#
 def get_ip_count( address ):
     count = 0
     f = open( 'web.log', 'r' )
@@ -22,6 +30,9 @@ def get_ip_count( address ):
 
 ip_last_dates = set()
 
+#
+# get the last date string from the visiting IP address
+#
 def get_last_dates( date_count ):
     count = 0
     f = open( 'web.log', 'r' )
