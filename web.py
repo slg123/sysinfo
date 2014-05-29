@@ -2,7 +2,9 @@
 
 # oh fuck this terrible code. 
 
-file = open( 'web.log', 'r' )
+#file = open( 'web.log', 'r' )
+weblog = '/var/log/httpd/access_log'
+file = open( weblog, 'r' )
 
 ips = set()
 
@@ -22,7 +24,7 @@ get_unique_ips()
 #
 def get_ip_count( address ):
     count = 0
-    f = open( 'web.log', 'r' )
+    f = open( weblog, 'r' )
     for line in f:
         if address in line:
             count += 1
@@ -35,7 +37,7 @@ ip_last_dates = set()
 #
 def get_last_dates( date_count ):
     count = 0
-    f = open( 'web.log', 'r' )
+    f = open( weblog, 'r' )
     for line in f:
         if address in line:
             count += 1
@@ -53,7 +55,7 @@ for address in ips:
 
 print "IP Addr | Num visits | Date of last visit"
 for date in ip_last_dates:
-    f = open( 'web.log', 'r' )
+    f = open( weblog, 'r' )
     for line in f:
         column = line.split(' ')
         ip = column[0]
@@ -62,9 +64,4 @@ for date in ip_last_dates:
         if date in line:
             log = ip + " --  " + str_ip_count + " --  " + column[2] + " " + column[3] + " " + column[4]
             print log.rstrip()
-
-
-
-
-
 
