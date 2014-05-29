@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# oh fuck this terrible code. 
-
-#file = open( 'web.log', 'r' )
 weblog = '/var/log/httpd/access_log'
 file = open( weblog, 'r' )
 
@@ -53,6 +50,8 @@ for address in ips:
     count = get_ip_count( address )
     ip_last_dates.add( get_last_dates( count ))
 
+logs = set()
+
 print "IP Addr | Num visits | Date of last visit"
 for date in ip_last_dates:
     f = open( weblog, 'r' )
@@ -63,5 +62,7 @@ for date in ip_last_dates:
         str_ip_count = str( ip_count )
         if date in line:
             log = ip + " --  " + str_ip_count + " --  " + column[2] + " " + column[3] + " " + column[4]
-            print log.rstrip()
+            logs.add( log.rstrip() )
 
+for entry in logs:
+    print entry
