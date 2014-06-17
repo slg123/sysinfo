@@ -3,7 +3,7 @@
 import wget
 import os
 
-filename_china = 'sinokoreacidr.txt'
+filename = 'sinokoreacidr.txt'
 
 def download_file():
     os.remove( filename ) if os.path.exists( filename ) else None
