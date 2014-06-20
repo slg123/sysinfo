@@ -23,12 +23,6 @@ sub get_access_count {
     return $count;
 }
 
-sub get_hostname {
-    my $ip = shift;
-    my $host = gethostbyaddr( inet_aton( $ip ), AF_INET );
-    return $host;
-}
-
 sub main {
     get_iplist();
     my %ips_counts = ();
@@ -38,7 +32,7 @@ sub main {
     }
 
     foreach my $key ( sort { $ips_counts{ $b } <=> $ips_counts{ $a } } keys %ips_counts ) {
-        my $host = get_hostname( $key );
+        my $host = gethostbyaddr( inet_aton( $key ), AF_INET );
         if ( $ips_counts{ $key } and $key and $host ) {
             printf( "%-10s - %-20s - %s\n", $ips_counts{ $key }, $key, $host );
         }
