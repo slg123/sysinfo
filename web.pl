@@ -17,17 +17,11 @@ sub get_iplist {
     close $fh;
 }
 
-sub get_access_count {
-    my $ip = shift;
-    my $count = grep( /$ip/, @ips );
-    return $count;
-}
-
 sub main {
     get_iplist();
     my %ips_counts = ();
     for my $ip ( @ips ) {
-        my $count = get_access_count( $ip );
+        my $count = grep( /$ip/, @ips ); 
         $ips_counts{ $ip } = $count unless exists $ips_counts{ $ip };
     }
 
