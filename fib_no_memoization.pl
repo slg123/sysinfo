@@ -13,6 +13,7 @@ sub to_minutes {
     my $seconds = shift;
     return $seconds if $seconds < 60;
     return ( $seconds / 60 ); 
+}
 
 for ( my $i = 0; $i < 100; $i++ ) {
     my $start = time();
