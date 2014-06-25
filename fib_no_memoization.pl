@@ -24,6 +24,6 @@ for ( my $i = 0; $i < 100; $i++ ) {
         print "$seconds seconds to calculate fib($i): $val\n"; 
     } else {
         my $minutes = to_minutes( $seconds );
-        print "$minutes minutes to calculate fib($i): $val\n"; 
+        printf "%.2f minutes to calculate fib($i): $val\n", $minutes; 
     }
 }
