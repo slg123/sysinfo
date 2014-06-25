@@ -13,5 +13,5 @@ sub fib {
 }
 
 for ( my $i = 0; $i < 100; $i++ ) {
-    print fib($i), "\n"; 
+    print "fib $i: ".fib($i), "\n"; 
 }
