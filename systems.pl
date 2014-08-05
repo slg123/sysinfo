@@ -4,7 +4,6 @@ use strict;
 use warnings;
 use autodie;
 use List::MoreUtils qw(uniq); 
-#use Net::SSH;
 
 my @systems;
 my @paths;
@@ -40,12 +39,14 @@ sub get_paths {
         }
     }
 }
-
 get_paths(); 
+
 my @unique_paths = uniq( @all_paths ); 
-for ( @unique_paths ) {
-    my $cmd = $_."/gcc -v";
-    for my $hostname ( @systems ) {
+
+for my $hostname ( @systems ) {
+    print " ####### $hostname ####### \n"; 
+    for ( @unique_paths ) {
+        my $cmd = $_."/gcc -v";
         my ( $stdout, $stderr, $exit ) = system( 'ssh '.$hostname.' '.$cmd );
         if ( $stdout ) {
             print $stdout, "\n"; 
@@ -55,3 +56,17 @@ for ( @unique_paths ) {
         }
     }
 }
+
+#for ( @unique_paths ) {
+#    my $cmd = $_."/gcc -v";
+#    for my $hostname ( @systems ) {
+#        print " ####### $hostname ####### \n"; 
+#        my ( $stdout, $stderr, $exit ) = system( 'ssh '.$hostname.' '.$cmd );
+#        if ( $stdout ) {
+#            print $stdout, "\n"; 
+#        }
+#        if ( $stderr ) {
+#            print $stderr, "\n"; 
+#        }
+#    }
+#}

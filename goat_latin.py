@@ -15,3 +15,4 @@ def convert_to_goat_latin( str ):
 
 string = 'I speak a bit of Goat Latin'
 print ' '.join( convert_to_goat_latin( string ) )
+

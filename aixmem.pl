@@ -33,8 +33,10 @@ sub get_aix_mem_percent_used {
     return $percent_used;
 }
 
+#
+# Get overall system paging use percentage.
+#
 sub get_aix_paging_percent_used {
-
     my $percent_used = 0;
     my $cmd = "lsps -s";
     open my $fh, "-|", $cmd;
