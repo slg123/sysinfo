@@ -12,15 +12,14 @@ int main() {
     int sz = strlen(str)+1; 
 
     print_string( str, sz ); 
-
     printf( "\n" ); 
-
     buf = reverse_string( str, sz ); 
 
-    int n;
-    for ( n = 0; n < sz; n++ ) {
-        printf( "%c", buf[n] ); 
+    int i;
+    for ( i = 0; i < sz; i++ ) {
+        printf( "%c", buf[i] ); 
     }
+
     printf( "\n" ); 
     return 0;
 }
