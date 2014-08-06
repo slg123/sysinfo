@@ -14,11 +14,7 @@ int main() {
     print_string( str, sz ); 
     printf( "\n" ); 
     buf = reverse_string( str, sz ); 
-
-    int i;
-    for ( i = 0; i < sz; i++ ) {
-        printf( "%c", buf[i] ); 
-    }
+    print_string( buf, sz ); 
 
     printf( "\n" ); 
     return 0;
