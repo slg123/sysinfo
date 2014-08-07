@@ -12,7 +12,6 @@ int main() {
     int sz = strlen(str)+1; 
 
     print_string( str, sz ); 
-    printf( "\n" ); 
     buf = reverse_string( str, sz ); 
     print_string( buf, sz ); 
 
@@ -38,5 +37,6 @@ void print_string( char *str, int sz ) {
             printf( "%c", str[i] );
         }
     }
+    printf( "\n" ); 
 }
 
