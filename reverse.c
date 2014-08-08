@@ -15,6 +15,7 @@ int main() {
     buf = reverse_string( str, sz ); 
     print_string( buf, sz ); 
 
+    free( buf ); 
     printf( "\n" ); 
     return 0;
 }
