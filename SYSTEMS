@@ -1,0 +1,37 @@
+# FILE    :  SYSTEMS
+# PURPOSE : Used by the build and install scripts to determine
+#          what systems should be built/installed.
+# NOTES   : Any line that starts with a '#' is a comment so
+#          you can easily comment out systems you don't want
+#          to build.
+#
+# RECORD FORMAT:
+# host;build-path;SecPath;AM_source_dir;ToBeBuilt;taz_name;taz_file_ostype;taz_file_osdir
+#   host = host on which the build is to be performed
+#   build-path = directory to be prepended to path before starting the build on host
+#   SecPath =
+#   AM_source_dir = location of directory containing AM under the source directory
+#   ToBeBuilt = indication of what to build
+#      ALL    =  AM,SM,SCM
+#      BOTH   = SM,SCM
+#      AGENT  = SM
+#      COMMON = SCM
+#   taz_name = name of the taz file for the host platform
+#   oic_taz_name = name of the Oracle Instant Client taz file for the host platform
+#   taz_file_ostype = OS type indication for buildpstars indicating platform type for taz files
+#   taz_file_osdir = OS directory name containing files for each platform
+#
+#May your builds be quick and efficient, unburdened by the decrepit ramblings of unsupported
+#hardware with dubious origins.  To the abyss you foul beasts, may you never see the light of
+#day until an appropriate suiter arrives bearing tidings of large fortunes to revive your fallen
+#husks and usher in a new era of darkness.
+#unxdec5;/usr/local/bin;cmnagent/build;AM-Unix;BOTH;nssu_OSF50;OSF1;OSF1_V5.0
+#unxsgi654;/usr/local/bin:/usr/freeware/bin;cmnagent/build;AM-Unix;BOTH;nssu_IRIX65;IRIX;IRIX_6.5
+suz300;/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_LINUX_i686;Linux;Linux_i686
+red300;/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_LINUX_ia64;Linux;Linux_ia64
+sunbld8a;/usr/local/bin:/usr/ccs/bin;cmnagent/build;AM-Unix;ALL;nssu_SUNOS58;SunOS;SunOS_5.8
+unxsun10x86;/usr/local/gcc-4.2.3/bin:/usr/local/bin:/usr/ccs/bin;cmnagent/build;AM-Unix;ALL;nssu_SUNOS_x86;SunOS;SunOS_x86
+aix500;/usr/local/gnu/gcc-4.2.3/bin:/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_AIX51;AIX;AIX_5.1
+hpx502;/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_HPUX11;HP-UX;HP-UX_B.11.11
+unxhpi64;/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_HPUX_ia64;HP-UX;HP-UX_ia64
+isuse1;/usr/local/bin;cmnagent/build;AM-Unix;ALL;nssu_LINUX_ppc;Linux;Linux_ppc
