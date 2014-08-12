@@ -5,14 +5,14 @@
 int main() {
     FILE *fp;
     char *line = NULL;
-    const char *filename = "/Unix3/Unix/agent/vsau73/build_tools/SYSTEMS"; 
+    char *filename = "/Unix3/Unix/agent/vsau73/build_tools/SYSTEMS"; 
     size_t len = 0;
     ssize_t read;
     const char *comment = "#"; 
 
     fp = fopen( filename, "r" );
     if ( fp == NULL ) {
-        printf( "file %s does not exist.\n", fp ); 
+        printf( "file %s does not exist.\n", filename ); 
         exit( EXIT_FAILURE );
     }
 
