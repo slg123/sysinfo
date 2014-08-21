@@ -21,10 +21,7 @@ sub get_numlength {
 my @products = ();
 for ( my $i = 1; $i <= 999; $i++ ) {
     for ( my $j = 1; $j <= 999; $j++ ) {
-        my $prod = $i * $j;
-        if ( get_numlength( $prod ) > 5 ) {
-            push @products, $prod; 
-        }
+        push @products, ( $i * $j ) if get_numlength( $i * $j ) > 5; 
     }
 }
 
