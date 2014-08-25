@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+# see if a number is a palindrome
 sub is_palindrome {   
     my $in = shift;
     my @n = split //, $in;
