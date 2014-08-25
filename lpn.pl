@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-sub palindrome_check {
+sub is_palindrome {   
     my $in = shift;
     my @n = split //, $in;
     if (( $n[0] == $n[5] && $n[1] == $n[4] && $n[2] == $n[3] )) {
@@ -28,7 +28,7 @@ for ( my $i = 1; $i <= 999; $i++ ) {
 my $highest = 100001; 
 my @palindromes = (); 
 foreach my $num ( @products ) {
-    if ( palindrome_check( $num ) ) {
+    if ( is_palindrome( $num ) ) {
         if ( $num > $highest ) {
             $highest = $num;
         }
