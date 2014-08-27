@@ -8,7 +8,7 @@ int main() {
     return 0;
 }
 
-int evenly_divisible( int n, int m ) {
+int divisible( int n, int m ) {
     int i;
     int count = 0;
     for ( i = 1; i <= m; i++ ) {
@@ -28,7 +28,7 @@ int get_smallest_multiple( int n, int m ) {
     int result;
     int smallest = n;
     for ( i = m; i > 0; i-- ) {
-        if ( divide( i, n ) == 1 ) {
+        if ( divisible( i, n ) == 1 ) {
             smallest = i;
         }
     }
