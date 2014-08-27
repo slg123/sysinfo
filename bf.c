@@ -8,7 +8,7 @@ int main() {
     return 0;
 }
 
-int divide( int n, int m ) {
+int evenly_divisible( int n, int m ) {
     int i;
     int count = 0;
     for ( i = 1; i <= m; i++ ) {
