@@ -28,7 +28,7 @@ int get_smallest_multiple( int n, int m ) {
     int result;
     int smallest = n;
     for ( i = m; i > 0; i-- ) {
-        if ( is_divisible( i, n ) == 1 ) {
+        if ( is_divisible( i, n ) ) {
             smallest = i;
         }
     }
