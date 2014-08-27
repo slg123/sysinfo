@@ -1,10 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    int i = get_smallest_multiple( 10, 1000000 );
-    printf( "%d\n", i ); 
-    int j = get_smallest_multiple( 20, 1000000000 ); 
-    printf( "%d\n", j ); 
+    printf( "%d\n", get_smallest_multiple( 10, 1000000 ) ); 
+    printf( "%d\n", get_smallest_multiple( 20, 1000000000 ) ); 
     return 0;
 }
 
