@@ -16,9 +16,8 @@ int is_divisible( int n, int m ) {
     }
     if ( count == m ) {
         return 1;
-    } else {
-        return 0;
-    }
+    } 
+    return 0;
 }
 
 int get_smallest_multiple( int n, int m ) {
