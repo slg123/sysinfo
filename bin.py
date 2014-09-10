@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import sys
+
 def binary( n ):
     if n == 0 or n == 1:
         return n
@@ -9,7 +11,5 @@ def binary( n ):
 
     return str(E)+str(b)
 
-for i in range( 256 ):
-    print binary( i )
-
+print binary(int(sys.argv[1]))
 
