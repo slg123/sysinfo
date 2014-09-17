@@ -12,12 +12,6 @@ int main() {
     printf("%lld\n", i ); 
     printf("%llu\n", j ); 
 
-    printf("%d\n", sizeof( int )); 
-    printf("%d\n", sizeof( long )); 
-    printf("%d\n", sizeof( long long ));
-    printf("%d\n", sizeof( unsigned long long ));
-    printf("%d\n", sizeof( double ));
-
     printf( "xxx %lld\n", getFreeDiskSpace() ); 
     printf( "xxx %llu\n", ull_getFreeDiskSpace()); 
 
