@@ -18,10 +18,8 @@ int main() {
     printf("%d\n", sizeof( unsigned long long ));
     printf("%d\n", sizeof( double ));
 
-    long long foo = getFreeDiskSpace();
-    printf( "xxx %lld\n", foo ); 
-    unsigned long long bar = ull_getFreeDiskSpace();
-    printf( "xxx %llu\n", bar ); 
+    printf( "xxx %lld\n", getFreeDiskSpace() ); 
+    printf( "xxx %llu\n", ull_getFreeDiskSpace()); 
 
     return 0;
 }
