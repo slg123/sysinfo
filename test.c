@@ -7,7 +7,11 @@ unsigned long long ull_getFreeDiskSpace();
 int main() {
 
     long long i = -1;
+    unsigned long long j = -1;
+
     printf("%lld\n", i ); 
+    printf("%llu\n", j ); 
+
     printf("%d\n", sizeof( int )); 
     printf("%d\n", sizeof( long )); 
     printf("%d\n", sizeof( long long ));
