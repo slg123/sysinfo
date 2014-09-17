@@ -19,7 +19,6 @@ int main() {
     unsigned long long bar = ull_getFreeDiskSpace();
     printf( "xxx %llu\n", bar ); 
 
-
     return 0;
 }
 
