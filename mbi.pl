@@ -7,7 +7,7 @@ my $sum = reduce { $a + $b } 1 .. 1000;
 print $sum, "\n";
 
 my $product = new Math::BigInt '1'; 
- $product = reduce { new Math::BigInt($a) * new Math::BigInt($b) } 1 .. 1000; 
+$product = reduce { new Math::BigInt($a) * new Math::BigInt($b) } 1 .. 1000; 
 print $product, "\n";
 
 my @arr = ( 1, 30, 29, 9020, -4 );
