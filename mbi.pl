@@ -16,11 +16,13 @@ my $max = max @arr;
 
 print "$min $max\n";
 
-my $total = new Math::BigInt '1'; 
-for ( my $i = 1; $i <= 1000; $i++ ) {
-    $total *= $i;
+sub get_total {
+    my $total = new Math::BigInt '1'; 
+    for ( my $i = 1; $i <= 1000; $i++ ) {
+        $total *= $i;
+    }
+    return $total;
 }
-print $total, "\n"; 
 
-print "\n\n$dd"; 
-
+my $tot = get_total(); 
+print $tot, "\n"; 
