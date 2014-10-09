@@ -19,9 +19,7 @@ sub triangular_number_sum {
         my @f = factors( $sum ); 
         my $number_of_factors = @f; 
 
-        if ( $number_of_factors > 100 ) {
-            print "$i : $sum : $number_of_factors\n";
-        }
+        print "$i : $sum : $number_of_factors\n";
 
         if ( $number_of_factors > 500 ) {
             print "FOUND => $i : $sum : $number_of_factors\n";
@@ -35,10 +33,15 @@ sub factors {
     return grep { $n % $_ == 0 } ( 1 .. $n ); 
 }
 
-my $start  = 16000;
-my $finish = 35000;
-#my $start = 1;
-#my $finish = 1000;
+my $args = @ARGV;
 
+my ( $start, $finish ) = @ARGV; 
+
+if ( !$args ) {
+    print "  usage: ./tri.pl [start] [end]\n"; 
+    print "example: ./tri.pl 1 28\n"; 
+    print "example: ./tri.pl 1000 2000\n"; 
+    exit;
+}
 
 triangular_number_sum( $start, $finish ); 
