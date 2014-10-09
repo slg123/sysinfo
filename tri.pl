@@ -3,10 +3,6 @@
 use strict;
 use warnings;
 use List::Util qw( reduce ); 
-use Memoize;
-
-memoize( 'factors' );
-memoize( 'triangular_number_sum' ); 
 
 sub triangular_number_sum {
     my $start  = shift;
