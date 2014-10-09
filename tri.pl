@@ -34,5 +34,4 @@ sub factors {
     return grep { $n % $_ == 0 } ( 1 .. $n ); 
 }
 
-# this blows up for very large N
-triangular_number_sum( 1000000000 ); 
+triangular_number_sum( 10000 ); 
