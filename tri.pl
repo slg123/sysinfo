@@ -19,7 +19,12 @@ sub triangular_number_sum {
         my $number_of_factors = @f; 
 
         if ( $number_of_factors > 100 ) {
-            print "$i: $sum : $number_of_factors\n"
+            print "$i : $sum : $number_of_factors\n";
+        }
+
+        if ( $number_of_factors > 500 ) {
+            print "FOUND => $i : $sum : $number_of_factors\n";
+            exit;
         }
     }
 }
