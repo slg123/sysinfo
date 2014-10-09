@@ -3,10 +3,15 @@
 use strict;
 use warnings;
 use List::Util qw( reduce ); 
+use Memoize;
+
+memoize( 'factors' );
+memoize( 'triangular_number_sum' ); 
 
 sub triangular_number_sum {
-    my $upto = shift;
-    for my $i ( 1 .. $upto ) {
+    my $start  = shift;
+    my $finish = shift;
+    for my $i ( $start .. $finish ) {
         my @t; 
         my $sum; 
         for ( my $j = $i; $j > 0; $j-- ) {
@@ -34,4 +39,10 @@ sub factors {
     return grep { $n % $_ == 0 } ( 1 .. $n ); 
 }
 
-triangular_number_sum( 10000 ); 
+my $start  = 16000;
+my $finish = 35000;
+#my $start = 1;
+#my $finish = 1000;
+
+
+triangular_number_sum( $start, $finish ); 
