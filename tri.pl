@@ -13,12 +13,14 @@ sub triangular_number_sum {
             push @t, $j;
         }
         for ( @t ) {
-            $sum = reduce { $a + $b } @t;
+            $sum = reduce { our $a + our $b } @t;
         }
         my @f = factors( $sum ); 
         my $number_of_factors = @f; 
 
-        print "$i: $sum : $number_of_factors\n"
+        if ( $number_of_factors > 100 ) {
+            print "$i: $sum : $number_of_factors\n"
+        }
     }
 }
 
@@ -28,4 +30,4 @@ sub factors {
 }
 
 # this blows up for very large N
-triangular_number_sum( 28 ); 
+triangular_number_sum( 1000000000 ); 
