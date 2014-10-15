@@ -16,22 +16,11 @@ void *thread( void *argument ) {
     for ( ;; ) {
         printf( "Thread %u running.\n", *( unsigned int* )argument);
         find_highly_divisible( 0, 5000 ); 
-        sleep( 1 );
-
-    }
-    for ( ;; ) {
-        printf( "Thread %u running.\n", *( unsigned int* )argument);
         find_highly_divisible( 5001, 10000 ); 
+        find_highly_divisible( 10000, 15000 ); 
         sleep( 1 );
     }
-    for ( ;; ) {
-        printf( "Thread %u running.\n", *( unsigned int* )argument);
-        find_highly_divisible( 10001, 15000 ); 
-        sleep( 1 );
-    }
-
     return NULL;
-
 }
 
 int find_highly_divisible( int start, int end ) {
@@ -39,14 +28,12 @@ int find_highly_divisible( int start, int end ) {
     for ( i = start; i < end; i++ ) {
         j = generate_triangle_number( i );
         k = get_factor_count( j );
-
-        //printf( "%d : %d : %d\n", i, j, k ); LOL don't print this out in your threaded program. 
+        //printf( "%d : %d : %d\n", i, j, k ); 
         if ( k > 500 ) {
-            printf( "FOUND!! -> %d is divisible by more than 500 numbers.\n", j );
-            break;
+            printf( "FOUND! %d is divisible by more than 500 numbers.\n", j ); 
+            exit( 1 ); 
         }
     }
-    return 0;
 }
 
 int generate_triangle_number( int i ) {
