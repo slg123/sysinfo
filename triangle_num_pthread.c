@@ -12,30 +12,33 @@ void sigint( int signo ) {
 
 void *thread( void *argument ) {
     ( void )argument;
+
+    typedef struct range range;
     
+    struct range { 
+        int start;
+        int end;
+    };
+
+    range r1 = {     0, 5000  }; 
+    range r2 = {  5001, 10000 }; 
+    range r3 = { 10001, 15000 }; 
+
+
     for ( ;; ) {
         printf( "Thread %u running.\n", *( unsigned int* )argument);
-        int start = 0;     
-        int end   = 5000;
-
-        find_highly_divisible( start, end ); 
+        find_highly_divisible( r1.start, r1.end ); 
         sleep( 1 );
 
     }
     for ( ;; ) {
         printf( "Thread %u running.\n", *( unsigned int* )argument);
-        int start = 5001;
-        int end   = 10000;
-
-        find_highly_divisible( start, end ); 
+        find_highly_divisible( r2.start, r2.end ); 
         sleep( 1 );
     }
     for ( ;; ) {
         printf( "Thread %u running.\n", *( unsigned int* )argument);
-        int start = 10001;
-        int end   = 15000;
-
-        find_highly_divisible( start, end ); 
+        find_highly_divisible( r3.start, r3.end ); 
         sleep( 1 );
     }
 
