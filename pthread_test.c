@@ -48,7 +48,6 @@ void *find_triangle_factors(void *threadid)
        }
    }
 
-
    pthread_exit(NULL);
 }
 
