@@ -158,12 +158,12 @@ Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
 
 use strict;
 use NetIQ::Nqext;
-our $Sev_fail = 10;
+my  $JobID     = NetIQ::Nqext::GetJobID();
+our $Sev_fail  = 10;
 our $iterCount = 0;
-my $JobID = NetIQ::Nqext::GetJobID();
-my $url = $Url; 
-my $RunTime = localtime();
-my $KsVersion = '$Revision: #11 $ $DateTime: 2014/5/22 17:48:53 $';
+my  $url       = $Url; 
+my  $RunTime   = localtime();
+my  $KsVersion = '$Revision: #11 $ $DateTime: 2014/5/22 17:48:53 $';
 
 our $useNQACUtil = 1;
 eval 'require "NetIQ/NQACUtil.pm"';
