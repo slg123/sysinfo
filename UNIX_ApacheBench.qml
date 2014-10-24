@@ -1,17 +1,12 @@
-<PROLOGUE>
-<![CDATA[
-
-]]>
-</PROLOGUE>
-
+<StringDef></StringDef>
 
 <KSID>
   <Type>Regular</Type>
   <Name>UNIX_ApacheBench</Name>
-  <Desc>Run Apache Bench ( ab ), collect results.</Desc>
+  <Desc>Run Apache Bench, simulate 500 access requests to a URL run concurrently, collect results.</Desc>
   <Version>
     <AppManID>6.5</AppManID>
-    <KSVerID>1.0</KSVerID>
+    <KSVerID>1.1</KSVerID>
   </Version>
   <NeedPWD>0</NeedPWD>
   <AdminOnly>0</AdminOnly>
@@ -19,6 +14,7 @@
   <DataSrcID>0</DataSrcID>
   <Platform>-1</Platform>
   <OptionExplicit>0</OptionExplicit>
+  <OriginKSName></OriginKSName>
 </KSID>
 
 <ObjType fullpath="0" dropfolderlist="0" styleversion="3">
@@ -48,10 +44,13 @@
 <Parameter>
   <Desc>Supported on:  [LINUX]
 Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
-  <Param name="$EventSettings">
-    <Desc>Event Settings</Desc>
-    <ReqInput>0</ReqInput>
-    <Folder>2</Folder>
+  <Param name="$Url">
+    <Desc>URL of webserver</Desc>
+    <Type>String</Type>
+    <Size>1000</Size>
+    <Value>https://somurl.somecompany.com/</Value>
+    <ReqInput>1</ReqInput>
+    <Folder>0</Folder>
     <NoQuote>0</NoQuote>
   </Param>
   <Param name="$GeneralSettings">
@@ -86,7 +85,7 @@ Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
     <NoQuote>0</NoQuote>
   </Param>
   <Param name="$Do_data_time_per_request">
-    <Desc>Collect data for time spent processing an http or https request in milliseconds?</Desc>
+    <Desc>Collect data for time in ms  spent processing 500 http or https requests?</Desc>
     <Value>n</Value>
     <ReqInput>1</ReqInput>
     <I_Type>I_CHECKBOX(Yes,y,n)</I_Type>
@@ -104,8 +103,8 @@ Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
     <Desc>Threshold -- average Time per http or https request. -1 disables.</Desc>
     <Type>Integer</Type>
     <Min>-1</Min>
-    <Max>10000</Max>  
-    <Value>500</Value> 
+    <Max>10000</Max>
+    <Value>500</Value>
     <Unit>ms</Unit>
     <ReqInput>0</ReqInput>
     <Parent>$Folder_Thresholds</Parent>
@@ -139,7 +138,7 @@ Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
 </AdvanceConfig>
 
 <ScriptDef>
-<Script language="perl">
+  <Script language="perl">
 <![CDATA[###
 ### Please do not remove the following comments.
 ### Version string added by setQMLVersion.exe during build process.
@@ -152,8 +151,8 @@ Apache Bench command ( ab -n 500 -c 100 https://someurl.out.there ).</Desc>
 ### $Id$
 ### $Revision$
 ###
-###
-###
+### Synopsis: Run the "ab" ( ApacheBench ) tool, collect the  time per request
+###           for 500 http or https requests. 
 ###
 ### -------------------------------------------------------------------------
 
@@ -162,20 +161,21 @@ use NetIQ::Nqext;
 our $Sev_fail = 10;
 our $iterCount = 0;
 my $JobID = NetIQ::Nqext::GetJobID();
+my $url = $Url; 
 my $RunTime = localtime();
 my $KsVersion = '$Revision: #11 $ $DateTime: 2014/5/22 17:48:53 $';
 
 our $useNQACUtil = 1;
-#eval 'require "NetIQ/NQACUtil.pm"';
-#if($@) 
-#{
-#    $useNQACUtil = 0;
-#    &printd ("useNQACUtil = 0\n");
-#}
+eval 'require "NetIQ/NQACUtil.pm"';
+if($@) 
+{
+    $useNQACUtil = 0;
+    &printd ("useNQACUtil = 0\n");
+}
 
 sub printd {
     if ($debug eq 'y') {
-        open(DEBUG, ">>$ENV{NQMAGT_HOME}/log/UNIX_ApacheBench_${JobID}");
+        open(DEBUG, ">>$ENV{NQMAGT_HOME}/log/UNIX_ApacheBench${JobID}");
         print "@_";
         print DEBUG "@_";
         close(DEBUG);  
@@ -185,24 +185,26 @@ sub printd {
 our ($sysname, $nodename, $release, $version, $machine);
 
 NetIQ::Nqext::Uname($sysname, $nodename, $release, $version, $machine);
+
 printd("ApacheBench ($KsVersion): Run at $RunTime, JobID=$JobID\n");
-printd("ApacheBench: Uname returned sysname=$sysname, nodename=$nodename, version=$version, release=$release, machine=$machine\n");
+
+printd("ApacheBench: Uname returned sysname=$sysname, nodename=$nodename, version=$version, 
+                                    release=$release, machine=$machine\n");
 
 printd("UNIX_CPUFolder=$UNIX_CPUFolder UNIX_CPUObj=$UNIX_CPUObj TH_time_per_request=$TH_time_per_request\n"); 
 
-my $cmdline;
 our $resmsg = "UNIX_CPUFolder = $UNIX_CPUFolder";
 
 my $detail_msg;
 our $agentOwner = NetIQ::Nqext::GetAgentOwner();
 
-my $agentVersion = (split(/\./, NetIQ::Nqext::GetVersion()))[0];
+my $agentVersion = split /\./, NetIQ::Nqext::GetVersion()[0];
 
 
 sub get_apache_bench_results {
 
     my $time_per_request; 
-    my $cmd = "ab -n 500 -c 100 http://om.houqe.lab/ 2>/dev/null"; 
+    my $cmd = "ab -n 500 -c 100 $url 2>/dev/null"; 
     open my $fh, "-|", $cmd;
     while ( <$fh> ) {
         if ( $_ =~ m/\[ms\] \(mean\)/ ) {
