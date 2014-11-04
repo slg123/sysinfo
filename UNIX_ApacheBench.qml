@@ -200,7 +200,7 @@ our $resmsg = "UNIX_CPUFolder = $UNIX_CPUFolder";
 my $detail_msg;
 our $agentOwner = NetIQ::Nqext::GetAgentOwner();
 
-my $agentVersion = split /\./, NetIQ::Nqext::GetVersion()[0];
+my $agentVersion = ( split (/\./, NetIQ::Nqext::GetVersion()))[0];
 
 
 sub get_apache_bench_results {
