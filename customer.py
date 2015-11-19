@@ -16,6 +16,16 @@ class Customer(object):
         self.balance += amount
         return self.balance
 
+class Car(object):
+
+    wheels = 4
+    color = 'orange'
+
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+
+
 def __main__():
 
     scott = Customer('Scott Gillespie', 2000.0)
@@ -26,5 +36,9 @@ def __main__():
 
     scott.deposit(700)
     print scott.balance
+
+    wrx = Car('Subaru', 'WRX')
+    print wrx.wheels
+    print wrx.color
 
 __main__()
