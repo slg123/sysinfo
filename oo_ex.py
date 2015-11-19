@@ -26,6 +26,10 @@ class Car(object):
         self.make = make
         self.model = model
 
+    @staticmethod
+    def make_car_sound():
+        print 'VRooooommmm!'
+
 
 def __main__():
 
@@ -43,5 +47,7 @@ def __main__():
     print wrx.color
     print Car.wheels
     print Car.color
+
+    wrx.make_car_sound()
 
 __main__()
