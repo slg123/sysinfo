@@ -16,6 +16,7 @@ class Customer(object):
         self.balance += amount
         return self.balance
 
+
 class Car(object):
 
     wheels = 4
@@ -40,5 +41,7 @@ def __main__():
     wrx = Car('Subaru', 'WRX')
     print wrx.wheels
     print wrx.color
+    print Car.wheels
+    print Car.color
 
 __main__()
