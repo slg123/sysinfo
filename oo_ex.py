@@ -17,7 +17,7 @@ class Customer(object):
         return self.balance
 
 
-class Car(object):
+class Vehicle(object):
 
     wheels = 4
     color = 'orange'
@@ -30,6 +30,9 @@ class Car(object):
     def make_car_sound():
         print 'VRooooommmm!'
 
+    @classmethod
+    def is_motorcycle(cls):
+        cls.wheels = 2
 
 def __main__():
 
@@ -42,12 +45,16 @@ def __main__():
     scott.deposit(700)
     print scott.balance
 
-    wrx = Car('Subaru', 'WRX')
+    wrx = Vehicle('Subaru', 'WRX')
     print wrx.wheels
     print wrx.color
-    print Car.wheels
-    print Car.color
+    print Vehicle.wheels
+    print Vehicle.color
 
     wrx.make_car_sound()
+
+    ktm = Vehicle('KTM', 'Enduro')
+    ktm.is_motorcycle()
+    print ktm.wheels
 
 __main__()
