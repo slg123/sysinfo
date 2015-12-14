@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main() {
-    int n = 60*60*24-1;
+    int n = 60*60*24-1; // seconds in a day
     std::cout << n << std::endl; 
 
     int isize = sizeof(int)*8; 
